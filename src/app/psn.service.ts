@@ -38,8 +38,8 @@ export class PsnService {
     const options = {
       responseType: 'text' as const
     };
-    return this.http.get('./assets/data/profile.html', options);
-    // return this.http.get(this.psnUrl + psn_id + '?completion=platinum', options);
+    // return this.http.get('./assets/data/profile.html', options);
+    return this.http.get(this.psnUrl + psn_id + '?completion=platinum', options);
   }
 
   parseCount(doc, trophyClass) {
@@ -99,8 +99,8 @@ export class PsnService {
       params: { 'type': 'platinum', 'page': pageCount },
       responseType: 'text' as const
     };
-    // return this.http.get(this.psnUrl + psn_id + "/log", options);
-    return this.http.get('./assets/data/platpage' + pageCount + '.html', options);
+    return this.http.get(this.psnUrl + psn_id + "/log", options);
+    // return this.http.get('./assets/data/platpage' + pageCount + '.html', options);
   }
 
 }
