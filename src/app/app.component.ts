@@ -29,7 +29,6 @@ export class AppComponent {
   constructor(
     public psnService: PsnService
   ) {
-    // this.search('phoenixgreen') 
   }
 
   search(val): void {
@@ -38,6 +37,7 @@ export class AppComponent {
     }
     this.error = false;
     this.loading = true;
+    this.user = new User();
     this.platinums = [];
     this.userId = val;
     this.psnService.getProfile(this.userId).subscribe(
@@ -57,7 +57,7 @@ export class AppComponent {
               this.platinums = this.platinums.concat(this.psnService.parsePlats(data));
               if (this.platinums.length === this.user.platinumCount) {
                 this.loading = false;
-                this.platinums.sort((a, b) => (a.num > b.num ? -1 : 1));
+                this.sort();
               }
             }, error => {
               console.log("platpage" + ((i / 50) + 1), error);
@@ -123,7 +123,7 @@ export class AppComponent {
     });
   }
 
-  sort(event: MatRadioChange) {
+  sort(event?: MatRadioChange) {
     if (this.sortOrder === "date") {
       this.platinums.sort((a, b) => (a.num > b.num ? -1 : 1));
     }

@@ -10,7 +10,7 @@
           User does not exist. Try updating your profile on
           <a target="_blank" [href]="'https://psnprofiles.com/' + this.userId">PSNProfiles</a>.
         </div>
-        <ng-container *ngIf="user">
+        <ng-container *ngIf="loading || user">
           <mat-divider></mat-divider>
           <section class="section">
             <h2>Icon Type</h2>
@@ -60,8 +60,8 @@
     </mat-card-content>
   </mat-card>
 
-  <div *ngIf="user" id="capture" class="outerContainer">
-    <div class="upperContainer" *ngIf="displayUserInfo">
+  <div id="capture" class="outerContainer" *ngIf="loading || user">
+    <div class="upperContainer" *ngIf="user && displayUserInfo">
       <div class="userInfo">
         <div class="userIdContainer">
           <img class="avatar" [src]="user.avatar">
@@ -104,7 +104,7 @@
         </div>
       </div>
     </div>
-    <div class="lowerContainer" *ngIf="platinums.length">
+    <div class="lowerContainer" *ngIf="user && platinums.length">
       <div class="platinumGrid" [ngStyle]="{ 'grid-template-columns': getStyle() }">
         <div class="platIconContainer" *ngFor="let plat of platinums">
           <img [src]="iconType === 'game' ? plat.gameIcon : plat.icon" class="platinumIcon" [style.width.px]="iconWidth"
@@ -115,6 +115,6 @@
         </div>
       </div>
     </div>
+    <mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
   </div>
 </div>
-<mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
