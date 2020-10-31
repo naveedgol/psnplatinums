@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/purple-green.css";
 
 @font-face {
     font-family: 'SST Roman';
@@ -102,7 +103,11 @@
     font-weight: normal;
     src: local('SST Heavy Italic'), url('./assets/fonts/SSTHeavyIt.woff') format('woff');
     }
-    
+
 body {
     margin: 0;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: rgba(0,0,0,.87);
 }

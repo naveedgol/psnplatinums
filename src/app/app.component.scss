@@ -50,14 +50,9 @@
 }
 
 .outerContainer {
-    // background-color: #00397e;
     font-family: SST Light;
-    // width: 100%;
-    // max-width: 768px;
-    background-color: purple;
-    // margin: auto;
     max-width: 100vw;
-    margin: auto;
+    margin: 10px;
 }
 
 .trophyImage {
@@ -115,12 +110,13 @@
 
 .platinumGrid {
     display: grid;
-    grid-template-columns: repeat( auto-fill, minmax(60px, 1fr) )
+    // grid-template-columns: repeat( auto-fill, minmax(60px, 1fr) );
 }
 
 .levelImage {
     width: 30px;
     margin-right: 10px;
+    margin-top: -10px; // todo
 }
 
 .levelContainer{
@@ -129,11 +125,22 @@
     margin-right: 30px;
 }
 
+.progressBarBase {
+    width: 100%;
+    height: 5px;
+    margin-top: 6px;
+    background-color: white;
+    border-radius: 3px;
+    opacity: 30%;
+}
+
 .progressBar {
     width: 100%;
     height: 5px;
     margin-top: 6px;
     background-color: white;
+    border-radius: 3px;
+    margin-top: -5px;
 }
 
 .levelNum {
@@ -142,4 +149,47 @@
 
 .levelUpperContainer {
     display: flex;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.search-box {
+    color: white;
+    width: 100%;
+    // height: 80px;
+    font-size: 20px;
+}
+
+.options {
+    margin: 10px auto;
+    width: calc(100% - 50px);
+}
+
+.example-margin {
+    margin-right: 20px;
+}
+
+.slider {
+    width: 100%;
+}
+
+.example-section {
+    margin-bottom: 15px;
+}
+
+.platIconContainer {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin: 4px 0;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+}
+
+.iconTypeLabel {
+    margin-bottom: 10px;
 }

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 class PlatinumTrophy {
   name: string;
-  rarity: number;
+  rarity: string;
   icon: string;
   game: string;
   gameIcon: string;
@@ -18,6 +18,7 @@ export class User {
   platinumCount: number;
   level: number;
   avatar: string;
+  levelProgress: number;
 
   getTotalCount(): number {
     return this.bronzeCount + this.silverCount + this.goldCount + this.platinumCount;
@@ -57,6 +58,11 @@ export class PsnService {
     user.platinumCount = this.parseCount(doc, "platinum");
     user.level = parseInt((doc.querySelectorAll("li.icon-sprite.level")[0] as HTMLElement).innerText);
     user.avatar = doc.getElementsByTagName("img")[6].src;
+    var levelProgress = doc.querySelector("div.progress-bar").childNodes[1].textContent.substring(6, 8);
+    if (levelProgress[1] === '%') {
+      levelProgress = levelProgress.substring(0, 1);
+    }
+    user.levelProgress = parseInt(levelProgress);
     return user;
   }
 
@@ -67,7 +73,7 @@ export class PsnService {
     const icons = doc.querySelectorAll("img.trophy");
     const games = doc.querySelectorAll("img.game");
     const nums = doc.querySelectorAll("b");
-    // const rarities = doc.querySelectorAll("span.typo-top");
+    const rarities = Array.from(doc.querySelectorAll("span.typo-top")).filter(x => (x as HTMLElement).innerText.slice(-1) === '%');
 
     const plats = [];
 
@@ -78,11 +84,12 @@ export class PsnService {
       trophy.icon = (icons[i] as HTMLImageElement).src;
       trophy.game = (games[i] as HTMLElement).title;
       trophy.gameIcon = (games[i] as HTMLImageElement).src;
-      trophy.num = parseInt(nums[i].innerText.substring(1).replace(/,/g, ''))
+      trophy.num = parseInt(nums[i].innerText.substring(1).replace(/,/g, ''));
+      trophy.rarity = (rarities[i] as HTMLElement).innerText;
       plats.push(trophy);
     }
 
-    console.log(plats);
+    // console.log(plats);
     return plats;
   }
 

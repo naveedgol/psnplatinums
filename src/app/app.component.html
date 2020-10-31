@@ -1,5 +1,46 @@
-<div id="capture" class="outerContainer" (click)="this.save()">
-  <div class="upperContainer" *ngIf="user">
+<mat-card class="options">
+  <mat-card-content>
+    <div class="search-box">
+      <mat-form-field>
+        <input matInput #searchInput placeholder="Enter a PSN ID" autocomplete="off"
+          (keydown.enter)="search(searchInput.value)">
+      </mat-form-field>
+      <ng-container *ngIf="user">
+        <mat-list role="list">
+          <mat-divider></mat-divider>
+          <mat-list-item role="listitem">
+            <div class="iconTypeLabel">Icon Type</div>
+            <mat-radio-group aria-label="Icon Type" [(ngModel)]="iconType">
+              <mat-radio-button value="trophy">Trophy</mat-radio-button>
+              <mat-radio-button value="game">Game</mat-radio-button>
+            </mat-radio-group>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item role="listitem">
+            <span>Icon Size</span>
+            <mat-slider class="slider" thumbLabel min="10" max="200" step="1" value="56" [(ngModel)]="iconWidth">
+            </mat-slider>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item role="listitem">
+            <mat-checkbox class="example-margin" [(ngModel)]="displayUserInfo">User Info</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="displayTrophyCounts" [disabled]="!displayUserInfo">Trophy
+              Counts
+            </mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="displayGameTitle">Game Title</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="displayTrophyTitle">Trophy Title</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="displayRarity">Rarity</mat-checkbox>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <button mat-raised-button color="primary" (click)="this.save()">Save as PNG</button>
+        </mat-list>
+      </ng-container>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<div *ngIf="user" id="capture" class="outerContainer">
+  <div class="upperContainer" *ngIf="displayUserInfo">
     <div class="userInfo">
       <div class="userIdContainer">
         <img class="avatar" [src]="user.avatar">
@@ -8,20 +49,22 @@
       <div class="totalStats">
         <div class="levelContainer">
           <div class="levelUpperContainer">
-            <img class="levelImage" src="assets/images/silver.png">
+            <img class="levelImage" [src]="getLevelImage()">
             <div class="levelNum">{{user.level}}</div>
           </div>
-          <div class="progressBar">
+          <div class="progressBarBase">
+          </div>
+          <div class="progressBar" [style.width.%]="user.levelProgress">
           </div>
         </div>
-        <div class="totalCountContainer">
+        <div class="totalCountContainer" *ngIf="displayTrophyCounts">
           <div class="totalCountNum">{{user.getTotalCount()}}</div>
           <div class="totalCountLabel">Total</div>
         </div>
       </div>
     </div>
-    <div class="divider"></div>
-    <div class="trophyCountsContainer">
+    <div class="divider" *ngIf="displayTrophyCounts"></div>
+    <div class="trophyCountsContainer" *ngIf="displayTrophyCounts">
       <div class="trophyCount">
         <img class="trophyImage" src="assets/images/platinum.png">
         <div class="trophyCountNum">{{user.platinumCount}}</div>
@@ -41,8 +84,13 @@
     </div>
   </div>
   <div class="lowerContainer" *ngIf="user.platinumCount===platinums.length">
-    <div class="platinumGrid">
-      <img *ngFor="let plat of platinums" [src]="plat.icon" class="platinumIcon">
+    <div class="platinumGrid" [ngStyle]="{ 'grid-template-columns': getStyle() }">
+      <div class="platIconContainer" *ngFor="let plat of platinums">
+        <img [src]="iconType === 'game' ? plat.gameIcon : plat.icon" class="platinumIcon" [style.width.px]="iconWidth">
+        <div *ngIf="displayGameTitle">{{plat.game}}</div>
+        <div *ngIf="displayTrophyTitle">{{plat.name}}</div>
+        <div *ngIf="displayRarity">{{plat.rarity}}</div>
+      </div>
     </div>
   </div>
 </div>
