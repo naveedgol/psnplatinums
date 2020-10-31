@@ -217,3 +217,19 @@ mat-form-field {
     flex-wrap: wrap;
     gap: 10px;
 }
+
+.error {
+    font-size: 20px;
+    margin-top: 20px;
+    color: white;
+}
+
+.radioGroup {
+    display: flex;
+    flex-flow: wrap;
+    margin: 15px 0;
+}
+
+.radioButton {
+    margin: 5px !important;
+}

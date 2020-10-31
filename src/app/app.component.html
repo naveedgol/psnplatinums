@@ -6,17 +6,13 @@
           <input matInput #searchInput placeholder="Enter a PSN ID" autocomplete="off"
             (keydown.enter)="search(searchInput.value)">
         </mat-form-field>
-        <div *ngIf="error">
-          User does not exist. Try updating your profile on
-          <a target="_blank" [href]="'https://psnprofiles.com/' + this.userId">PSNProfiles</a>.
-        </div>
         <ng-container *ngIf="loading || user">
           <mat-divider></mat-divider>
           <section class="section">
             <h2>Icon Type</h2>
-            <mat-radio-group aria-label="Icon Type" [(ngModel)]="iconType">
-              <mat-radio-button value="trophy">Trophy</mat-radio-button>
-              <mat-radio-button value="game">Game</mat-radio-button>
+            <mat-radio-group class="radioGroup" aria-label="Icon Type" [(ngModel)]="iconType">
+              <mat-radio-button class="radioButton" value="trophy">Trophy</mat-radio-button>
+              <mat-radio-button class="radioButton" value="game">Game</mat-radio-button>
             </mat-radio-group>
           </section>
           <mat-divider></mat-divider>
@@ -28,18 +24,19 @@
           <mat-divider></mat-divider>
           <section class="section">
             <h2>Sort order</h2>
-            <mat-radio-group aria-label="Sort Order" [(ngModel)]="sortOrder" (change)="sort($event)">
-              <mat-radio-button value="date">Date</mat-radio-button>
-              <mat-radio-button value="rarity">Rarity</mat-radio-button>
-              <mat-radio-button value="alpha">Alphabetical (Game)</mat-radio-button>
+            <mat-radio-group class="radioGroup" aria-label="Sort Order" [(ngModel)]="sortOrder" (change)="sort($event)">
+              <mat-radio-button class="radioButton" value="date">Date</mat-radio-button>
+              <mat-radio-button class="radioButton" value="rarity">Rarity</mat-radio-button>
+              <mat-radio-button class="radioButton" value="alpha">Alphabetical (Game)</mat-radio-button>
             </mat-radio-group>
           </section>
           <mat-divider></mat-divider>
           <section class="section">
             <h2>Sort direction</h2>
-            <mat-radio-group aria-label="Sort Direction" [(ngModel)]="sortDirection" (change)="sort($event)">
-              <mat-radio-button value="asc">Ascending</mat-radio-button>
-              <mat-radio-button value="des">Descending</mat-radio-button>
+            <mat-radio-group class="radioGroup" aria-label="Sort Direction" [(ngModel)]="sortDirection"
+              (change)="sort($event)">
+              <mat-radio-button class="radioButton" value="asc">Ascending</mat-radio-button>
+              <mat-radio-button class="radioButton" value="des">Descending</mat-radio-button>
             </mat-radio-group>
           </section>
           <mat-divider></mat-divider>
@@ -114,6 +111,13 @@
           <div *ngIf="displayRarity">{{plat.rarity}}%</div>
         </div>
       </div>
+    </div>
+    <div class="error" *ngIf="error">
+      User does not exist. Try updating your profile on
+      <a target="_blank" [href]="'https://psnprofiles.com/' + this.userId">PSNProfiles</a>.
+    </div>
+    <div class="error" *ngIf="adblockError">
+      An error occured. Try disabling your adblock.
     </div>
     <mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
   </div>

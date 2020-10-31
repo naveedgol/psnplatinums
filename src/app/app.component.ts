@@ -25,6 +25,7 @@ export class AppComponent {
   sortOrder = 'date';
   sortDirection = 'des';
   error = false;
+  adblockError = false;
 
   constructor(
     public psnService: PsnService
@@ -36,8 +37,9 @@ export class AppComponent {
       return;
     }
     this.error = false;
+    this.adblockError = false;
     this.loading = true;
-    this.user = new User();
+    this.user = undefined;
     this.platinums = [];
     this.userId = val;
     this.psnService.getProfile(this.userId).subscribe(
@@ -61,6 +63,7 @@ export class AppComponent {
               }
             }, error => {
               console.log("platpage" + ((i / 50) + 1), error);
+              this.adblockError = true;
             }
           );
         }
@@ -107,7 +110,7 @@ export class AppComponent {
 
   save() {
     let element = document.querySelector("#capture");
-    html2canvas(element as HTMLElement, { useCORS: true }).then(function (canvas) {
+    html2canvas(element as HTMLElement, { useCORS: true, scrollX: 0, scrollY: -window.scrollY }).then(function (canvas) {
       // Convert the canvas to blob
       canvas.toBlob(function (blob) {
         // To download directly on browser default 'downloads' location
@@ -118,7 +121,6 @@ export class AppComponent {
 
         // To save manually somewhere in file explorer
         // window.saveAs(blob, 'image.png');
-
       }, 'image/png');
     });
   }
