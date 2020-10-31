@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { retry } from 'rxjs/operators';
 class PlatinumTrophy {
   name: string;
-  rarity: string;
+  rarity: number;
   icon: string;
   game: string;
   gameIcon: string;
@@ -39,7 +39,7 @@ export class PsnService {
       responseType: 'text' as const
     };
     // return this.http.get('./assets/data/profile.html', options);
-    return this.http.get(this.psnUrl + psn_id + '?completion=platinum', options);
+    return this.http.get(this.psnUrl + psn_id + '?completion=platinum', options).pipe(retry(10));
   }
 
   parseCount(doc, trophyClass) {
@@ -49,7 +49,9 @@ export class PsnService {
   parseUser(data, psn_id) {
     const domparser = new DOMParser();
     const doc = domparser.parseFromString(data, "text/html");
-
+    if (doc.getElementById("update-find")) {
+      return undefined;
+    }
     var user = new User();
     user.id = psn_id;
     user.bronzeCount = this.parseCount(doc, "bronze");
@@ -85,7 +87,7 @@ export class PsnService {
       trophy.game = (games[i] as HTMLElement).title;
       trophy.gameIcon = (games[i] as HTMLImageElement).src;
       trophy.num = parseInt(nums[i].innerText.substring(1).replace(/,/g, ''));
-      trophy.rarity = (rarities[i] as HTMLElement).innerText;
+      trophy.rarity = parseFloat((rarities[i] as HTMLElement).innerText);
       plats.push(trophy);
     }
 
@@ -99,7 +101,7 @@ export class PsnService {
       params: { 'type': 'platinum', 'page': pageCount },
       responseType: 'text' as const
     };
-    return this.http.get(this.psnUrl + psn_id + "/log", options);
+    return this.http.get(this.psnUrl + psn_id + "/log", options).pipe(retry(10));
     // return this.http.get('./assets/data/platpage' + pageCount + '.html', options);
   }
 

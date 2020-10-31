@@ -14,6 +14,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { MatListModule } from '@angular/material/list';
     MatCardModule,
     MatRadioModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatProgressSpinnerModule,
+    MatExpansionModule
   ],
   providers: [PsnService],
   bootstrap: [AppComponent]

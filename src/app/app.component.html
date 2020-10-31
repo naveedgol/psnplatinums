@@ -5,35 +5,55 @@
         <input matInput #searchInput placeholder="Enter a PSN ID" autocomplete="off"
           (keydown.enter)="search(searchInput.value)">
       </mat-form-field>
+      <div *ngIf="error">
+        User does not exist. Try updating your profile on
+        <a target="_blank" [href]="'https://psnprofiles.com/' + this.userId">PSNProfiles</a>.
+      </div>
       <ng-container *ngIf="user">
-        <mat-list role="list">
-          <mat-divider></mat-divider>
-          <mat-list-item role="listitem">
-            <div class="iconTypeLabel">Icon Type</div>
-            <mat-radio-group aria-label="Icon Type" [(ngModel)]="iconType">
-              <mat-radio-button value="trophy">Trophy</mat-radio-button>
-              <mat-radio-button value="game">Game</mat-radio-button>
-            </mat-radio-group>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item role="listitem">
-            <span>Icon Size</span>
-            <mat-slider class="slider" thumbLabel min="10" max="200" step="1" value="56" [(ngModel)]="iconWidth">
-            </mat-slider>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item role="listitem">
-            <mat-checkbox class="example-margin" [(ngModel)]="displayUserInfo">User Info</mat-checkbox>
-            <mat-checkbox class="example-margin" [(ngModel)]="displayTrophyCounts" [disabled]="!displayUserInfo">Trophy
-              Counts
-            </mat-checkbox>
-            <mat-checkbox class="example-margin" [(ngModel)]="displayGameTitle">Game Title</mat-checkbox>
-            <mat-checkbox class="example-margin" [(ngModel)]="displayTrophyTitle">Trophy Title</mat-checkbox>
-            <mat-checkbox class="example-margin" [(ngModel)]="displayRarity">Rarity</mat-checkbox>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-          <button mat-raised-button color="primary" (click)="this.save()">Save as PNG</button>
-        </mat-list>
+        <mat-divider></mat-divider>
+        <section class="section">
+          <h2>Icon Type</h2>
+          <mat-radio-group aria-label="Icon Type" [(ngModel)]="iconType">
+            <mat-radio-button value="trophy">Trophy</mat-radio-button>
+            <mat-radio-button value="game">Game</mat-radio-button>
+          </mat-radio-group>
+        </section>
+        <mat-divider></mat-divider>
+        <section class="section">
+          <h2>Icon Size</h2>
+          <mat-slider class="slider" thumbLabel min="10" max="200" step="1" value="56" [(ngModel)]="iconWidth">
+          </mat-slider>
+        </section>
+        <mat-divider></mat-divider>
+        <section class="section">
+          <h2>Sort order</h2>
+          <mat-radio-group aria-label="Sort Order" [(ngModel)]="sortOrder" (change)="sort($event)">
+            <mat-radio-button value="date">Date</mat-radio-button>
+            <mat-radio-button value="rarity">Rarity</mat-radio-button>
+            <mat-radio-button value="alpha">Alphabetical (Game)</mat-radio-button>
+          </mat-radio-group>
+        </section>
+        <mat-divider></mat-divider>
+        <section class="section">
+          <h2>Sort direction</h2>
+          <mat-radio-group aria-label="Sort Direction" [(ngModel)]="sortDirection" (change)="sort($event)">
+            <mat-radio-button value="asc">Ascending</mat-radio-button>
+            <mat-radio-button value="des">Descending</mat-radio-button>
+          </mat-radio-group>
+        </section>
+        <mat-divider></mat-divider>
+        <section class="section">
+          <h2>Display Options</h2>
+          <mat-checkbox class="example-margin" [(ngModel)]="displayUserInfo">User Info</mat-checkbox>
+          <mat-checkbox class="example-margin" [(ngModel)]="displayTrophyCounts" [disabled]="!displayUserInfo">Trophy
+            Counts
+          </mat-checkbox>
+          <mat-checkbox class="example-margin" [(ngModel)]="displayGameTitle">Game Title</mat-checkbox>
+          <mat-checkbox class="example-margin" [(ngModel)]="displayTrophyTitle">Trophy Title</mat-checkbox>
+          <mat-checkbox class="example-margin" [(ngModel)]="displayRarity">Rarity</mat-checkbox>
+        </section>
+        <mat-divider></mat-divider>
+        <button class="saveButton" mat-raised-button color="primary" (click)="this.save()">Save as PNG</button>
       </ng-container>
     </div>
   </mat-card-content>
@@ -83,10 +103,11 @@
       </div>
     </div>
   </div>
-  <div class="lowerContainer" *ngIf="user.platinumCount===platinums.length">
+  <div class="lowerContainer" *ngIf="platinums.length">
     <div class="platinumGrid" [ngStyle]="{ 'grid-template-columns': getStyle() }">
       <div class="platIconContainer" *ngFor="let plat of platinums">
-        <img [src]="iconType === 'game' ? plat.gameIcon : plat.icon" class="platinumIcon" [style.width.px]="iconWidth">
+        <img [src]="iconType === 'game' ? plat.gameIcon : plat.icon" class="platinumIcon" [style.width.px]="iconWidth"
+          [title]="plat.game">
         <div *ngIf="displayGameTitle">{{plat.game}}</div>
         <div *ngIf="displayTrophyTitle">{{plat.name}}</div>
         <div *ngIf="displayRarity">{{plat.rarity}}</div>
@@ -94,3 +115,4 @@
     </div>
   </div>
 </div>
+<mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
