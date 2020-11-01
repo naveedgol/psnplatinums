@@ -27,6 +27,7 @@ export class AppComponent {
   sortOrder = 'date';
   sortDirection = 'des';
   error = false;
+  throttleError = false;
   adblockError = false;
   range = new FormGroup({
     start: new FormControl(new Date('January 1, 2007')),
@@ -44,6 +45,7 @@ export class AppComponent {
     }
     this.error = false;
     this.adblockError = false;
+    this.throttleError = false;
     this.loading = true;
     this.user = undefined;
     this.platinums = [];
@@ -78,6 +80,10 @@ export class AppComponent {
         }
       }, error => {
         console.log("profile", error);
+        if (error.status === 429) {
+          this.throttleError = true;
+          console.log("throttled");
+        }
       }
     );
   }

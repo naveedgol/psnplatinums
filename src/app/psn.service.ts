@@ -40,7 +40,7 @@ export class PsnService {
       responseType: 'text' as const
     };
     // return this.http.get('./assets/data/profile.html', options);
-    return this.http.get(this.psnUrl + psn_id + '?completion=platinum', options).pipe(retry(10));
+    return this.http.get(this.psnUrl + psn_id + '?completion=platinum', options).pipe(retry(2));
   }
 
   parseCount(doc, trophyClass) {
