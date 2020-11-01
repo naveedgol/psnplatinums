@@ -8,6 +8,7 @@ class PlatinumTrophy {
   game: string;
   gameIcon: string;
   num: number;
+  date: Date;
 }
 
 export class User {
@@ -68,6 +69,10 @@ export class PsnService {
     return user;
   }
 
+  getMonthFromString(mon): number {
+    return new Date(Date.parse(mon + " 1, 2012")).getMonth() + 1
+  }
+
   parsePlats(data) {
     const domparser = new DOMParser();
     const doc = domparser.parseFromString(data, "text/html");
@@ -76,6 +81,7 @@ export class PsnService {
     const games = doc.querySelectorAll("img.game");
     const nums = doc.querySelectorAll("b");
     const rarities = Array.from(doc.querySelectorAll("span.typo-top")).filter(x => (x as HTMLElement).innerText.slice(-1) === '%');
+    const dates = doc.querySelectorAll("span.typo-top-date");
 
     const plats = [];
 
@@ -88,6 +94,12 @@ export class PsnService {
       trophy.gameIcon = (games[i] as HTMLImageElement).src;
       trophy.num = parseInt(nums[i].innerText.substring(1).replace(/,/g, ''));
       trophy.rarity = parseFloat((rarities[i] as HTMLElement).innerText);
+      let date: Date = new Date();
+      let d = (dates[i] as HTMLElement).innerText.trim().split(" ");
+      date.setMonth(this.getMonthFromString(d[1]));
+      date.setFullYear(parseInt(d[2]));
+      date.setDate(parseInt(d[0].slice(0, -2)));
+      trophy.date = date;
       plats.push(trophy);
     }
 

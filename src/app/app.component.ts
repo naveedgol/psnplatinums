@@ -3,6 +3,7 @@ import { PsnService, User } from './psn.service';
 import html2canvas from 'html2canvas';
 import { MatInput } from '@angular/material/input';
 import { MatRadioChange } from '@angular/material/radio';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { MatRadioChange } from '@angular/material/radio';
 })
 export class AppComponent {
   platinums = [];
+  currentPlats = [];
   user: User;
   userId = '';
   iconWidth = 56;
@@ -26,6 +28,10 @@ export class AppComponent {
   sortDirection = 'des';
   error = false;
   adblockError = false;
+  range = new FormGroup({
+    start: new FormControl(new Date('January 1, 2007')),
+    end: new FormControl(new Date())
+  });
 
   constructor(
     public psnService: PsnService
@@ -41,6 +47,7 @@ export class AppComponent {
     this.loading = true;
     this.user = undefined;
     this.platinums = [];
+    this.currentPlats = []
     this.userId = val;
     this.psnService.getProfile(this.userId).subscribe(
       data => {
@@ -58,6 +65,7 @@ export class AppComponent {
           this.psnService.getPlatinums(this.userId, (i / 50) + 1).subscribe(
             data => {
               this.platinums = this.platinums.concat(this.psnService.parsePlats(data));
+              this.currentPlats = this.platinums;
               if (this.platinums.length === this.user.platinumCount) {
                 this.loading = false;
                 this.sort();
@@ -128,18 +136,26 @@ export class AppComponent {
 
   sort(event?: MatRadioChange) {
     if (this.sortOrder === "date") {
-      this.platinums.sort((a, b) => (a.num > b.num ? -1 : 1));
+      this.currentPlats.sort((a, b) => (a.num > b.num ? -1 : 1));
     }
     else if (this.sortOrder === "rarity") {
-      this.platinums.sort((a, b) => (a.rarity > b.rarity ? -1 : 1));
+      this.currentPlats.sort((a, b) => (a.rarity > b.rarity ? -1 : 1));
     }
     else if (this.sortOrder === "alpha") {
-      this.platinums.sort((a, b) => (a.game.toUpperCase() < b.game.toUpperCase() ? -1 : 1));
+      this.currentPlats.sort((a, b) => (a.game.toUpperCase() < b.game.toUpperCase() ? -1 : 1));
     }
 
     if (this.sortDirection == 'asc') {
-      this.platinums.reverse();
+      this.currentPlats.reverse();
     }
+  }
+
+  dateChanged(event) {
+    let startDate: Date = new Date(this.range.value.start);
+    let endDate: Date = new Date(this.range.value.end);
+    this.currentPlats = this.platinums.filter(p => {
+      return p.date.getTime() >= startDate.getTime() && p.date.getTime() <= endDate.getTime();
+    });
   }
 }
 
