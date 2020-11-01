@@ -46,6 +46,7 @@ export class AppComponent {
       data => {
         this.user = this.psnService.parseUser(data, this.userId);
         if (this.user === undefined) {
+          console.log("User does not exist.");
           this.error = true;
           this.loading = false;
           return;

@@ -222,6 +222,7 @@ mat-form-field {
     font-size: 20px;
     margin-top: 20px;
     color: white;
+    color: red;
 }
 
 .radioGroup {
@@ -232,4 +233,8 @@ mat-form-field {
 
 .radioButton {
     margin: 5px !important;
+}
+
+a {
+    color: #69f0ae;
 }

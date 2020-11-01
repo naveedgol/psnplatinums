@@ -13,9 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -33,9 +31,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatCardModule,
     MatRadioModule,
     MatDividerModule,
-    MatListModule,
     MatProgressSpinnerModule,
-    MatExpansionModule
   ],
   providers: [PsnService],
   bootstrap: [AppComponent]

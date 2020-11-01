@@ -2,10 +2,22 @@
   <mat-card class="options">
     <mat-card-content>
       <div class="search-box">
-        <mat-form-field>
-          <input matInput #searchInput placeholder="Enter a PSN ID" autocomplete="off"
-            (keydown.enter)="search(searchInput.value)">
-        </mat-form-field>
+        <section class="section">
+          <mat-form-field>
+            <input matInput #searchInput placeholder="Enter a PSN ID" autocomplete="off"
+              (keydown.enter)="search(searchInput.value)">
+          </mat-form-field>
+          <div>Ensure your profile is up to date on
+            <a target="_blank" href="https://psnprofiles.com/">PSNProfiles</a>.
+          </div>
+          <div class="error" *ngIf="error">
+            User does not exist. Try adding your profile to
+            <a target="_blank" [href]="'https://psnprofiles.com/' + this.userId">PSNProfiles</a>.
+          </div>
+          <div class="error" *ngIf="adblockError">
+            An error occured. Try disabling your adblock.
+          </div>
+        </section>
         <ng-container *ngIf="loading || user">
           <mat-divider></mat-divider>
           <section class="section">
@@ -43,7 +55,8 @@
           <section class="section">
             <h2>Display Options</h2>
             <mat-checkbox class="example-margin" [(ngModel)]="displayUserInfo">User Info</mat-checkbox>
-            <mat-checkbox class="example-margin" [(ngModel)]="displayTrophyCounts" [disabled]="!displayUserInfo">Trophy
+            <mat-checkbox class="example-margin" [(ngModel)]="displayTrophyCounts" [disabled]="!displayUserInfo">
+              Trophy
               Counts
             </mat-checkbox>
             <mat-checkbox class="example-margin" [(ngModel)]="displayGameTitle">Game Title</mat-checkbox>
@@ -111,13 +124,6 @@
           <div *ngIf="displayRarity">{{plat.rarity}}%</div>
         </div>
       </div>
-    </div>
-    <div class="error" *ngIf="error">
-      User does not exist. Try updating your profile on
-      <a target="_blank" [href]="'https://psnprofiles.com/' + this.userId">PSNProfiles</a>.
-    </div>
-    <div class="error" *ngIf="adblockError">
-      An error occured. Try disabling your adblock.
     </div>
     <mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
   </div>
