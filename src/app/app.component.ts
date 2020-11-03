@@ -1,10 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { PsnService } from './services/psn.service';
-import { MatInput } from '@angular/material/input';
 import { MatRadioChange } from '@angular/material/radio';
 import { FormGroup, FormControl } from '@angular/forms';
 import { User } from './types/User';
 import { DisplaySettings } from './types/DisplaySettings';
+import { Trophy } from './types/Trophy';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +19,7 @@ export class AppComponent {
   user: User;
   userId = '';
   loading = false;
+  isSaveLoading = false;
   sortOrder = 'date';
   sortDirection = 'des';
   error = false;
@@ -117,6 +118,10 @@ export class AppComponent {
     this.currentPlats = this.platinums.filter(p => {
       return p.date.getTime() >= startDate.getTime() && p.date.getTime() <= endDate.getTime();
     });
+  }
+
+  uponIsSaveLoading(a) {
+    this.isSaveLoading = a;
   }
 }
 

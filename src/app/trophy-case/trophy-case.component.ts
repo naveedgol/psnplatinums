@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../types/User';
 import { Trophy } from '../types/Trophy';
 import { DisplaySettings } from '../types/DisplaySettings';
 import html2canvas from 'html2canvas';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-trophy-case',
@@ -13,6 +14,7 @@ export class TrophyCaseComponent {
   @Input() platinums: Trophy[] = [];
   @Input() user: User;
   @Input() displaySettings: DisplaySettings;
+  @Output() uponIsSaveLoading: EventEmitter<any> = new EventEmitter(false);
 
   getLevelImage(): string {
     if (this.user.level < 100) {
@@ -52,19 +54,22 @@ export class TrophyCaseComponent {
   }
 
   public save(): void {
+    this.uponIsSaveLoading.emit(true);
     let element = document.querySelector("#capture");
-    html2canvas(element as HTMLElement, { useCORS: true, scrollX: 0, scrollY: -window.scrollY }).then(function (canvas) {
-      // Convert the canvas to blob
-      canvas.toBlob(function (blob) {
-        // To download directly on browser default 'downloads' location
-        let link = document.createElement("a");
-        link.download = "image.png";
-        link.href = URL.createObjectURL(blob);
-        link.click();
+    from(html2canvas(element as HTMLElement, { useCORS: true, scrollX: 0, scrollY: -window.scrollY })).subscribe(
+      canvas => {
+        canvas.toBlob((blob) => {
+          // To download directly on browser default 'downloads' location
+          let link = document.createElement("a");
+          link.download = "image.png";
+          link.href = URL.createObjectURL(blob);
+          link.click();
 
-        // To save manually somewhere in file explorer
-        // window.saveAs(blob, 'image.png');
-      }, 'image/png');
-    });
+          // To save manually somewhere in file explorer
+          // window.saveAs(blob, 'image.png');
+        }, 'image/png');
+        this.uponIsSaveLoading.emit(false);
+      }
+    )
   }
 }
