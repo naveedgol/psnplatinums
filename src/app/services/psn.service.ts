@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { retry } from 'rxjs/operators';
 import { User } from '../types/User';
 import { Trophy } from '../types/Trophy';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class PsnService {
 
   psnUrl = 'https://cors-anywhere.herokuapp.com/https://psnprofiles.com/';
 
-  getProfile(psn_id) {
+  getProfile(psn_id): Observable<any> {
     const options = {
       responseType: 'text' as const
     };
@@ -24,11 +25,11 @@ export class PsnService {
     return this.http.get(this.psnUrl + psn_id + '?completion=platinum', options).pipe(retry(2));
   }
 
-  parseCount(doc, trophyClass) {
+  parseCount(doc, trophyClass: string): number {
     return parseInt(doc.querySelectorAll("li." + trophyClass)[0].innerText.trim().replace(/,/g, ''));
   }
 
-  parseUser(data, psn_id) {
+  parseUser(data: string, psn_id: string): User {
     const domparser = new DOMParser();
     const doc = domparser.parseFromString(data, "text/html");
     if (doc.getElementById("update-find")) {
@@ -50,11 +51,11 @@ export class PsnService {
     return user;
   }
 
-  getMonthFromString(mon): number {
-    return new Date(Date.parse(mon + " 1, 2012")).getMonth() + 1
+  getMonthNumberFromString(month: string): number {
+    return new Date(Date.parse(month + " 1, 2012")).getMonth() + 1
   }
 
-  parsePlats(data) {
+  parsePlats(data: string): Trophy[] {
     const domparser = new DOMParser();
     const doc = domparser.parseFromString(data, "text/html");
     const titles = doc.querySelectorAll("a.title");
@@ -79,25 +80,24 @@ export class PsnService {
       trophy.rarity = parseFloat((rarities[i] as HTMLElement).innerText);
       let date: Date = new Date();
       let d = (dates[i] as HTMLElement).innerText.trim().split(" ");
-      date.setMonth(this.getMonthFromString(d[1]));
+      date.setMonth(this.getMonthNumberFromString(d[1]));
       date.setFullYear(parseInt(d[2]));
       date.setDate(parseInt(d[0].slice(0, -2)));
       trophy.date = date;
       plats.push(trophy);
     }
 
-    // console.log(plats);
     return plats;
   }
 
-  getPlatinums(psn_id, pageCount) {
+  getPlatinums(psn_id: string, pageCount: number): Observable<any> {
     const options = {
       headers: { 'accept': 'text/html' },
-      params: { 'type': 'platinum', 'page': pageCount },
+      params: { 'type': 'platinum', 'page': pageCount.toString() },
       responseType: 'text' as const
     };
     if (this.debug) {
-      return this.http.get('./assets/data/platpage' + pageCount + '.html', options);
+      return this.http.get('./assets/data/platpage' + pageCount.toString() + '.html', options);
     }
     return this.http.get(this.psnUrl + psn_id + "/log", options).pipe(retry(10));
   }
