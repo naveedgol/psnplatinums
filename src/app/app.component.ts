@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { PsnService, User } from './psn.service';
-import html2canvas from 'html2canvas';
+import { Component, ViewChild } from '@angular/core';
+import { PsnService } from './services/psn.service';
 import { MatInput } from '@angular/material/input';
 import { MatRadioChange } from '@angular/material/radio';
 import { FormGroup, FormControl } from '@angular/forms';
+import { User } from './types/User';
+import { DisplaySettings } from './types/DisplaySettings';
 
 @Component({
   selector: 'app-root',
@@ -11,18 +12,12 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @ViewChild('trophyCase', { static: false }) trophyCase;
+
   platinums = [];
   currentPlats = [];
   user: User;
   userId = '';
-  iconWidth = 56;
-  iconPadding = 6;
-  displayUserInfo = true;
-  displayTrophyCounts = true;
-  displayTrophyTitle = false;
-  displayGameTitle = false;
-  displayRarity = false;
-  iconType = 'trophy';
   loading = false;
   sortOrder = 'date';
   sortDirection = 'des';
@@ -33,6 +28,18 @@ export class AppComponent {
     start: new FormControl(new Date('January 1, 2007')),
     end: new FormControl(new Date())
   });
+
+  displaySettings: DisplaySettings = {
+    iconType: "TROPHY",
+    iconWidthPx: 56,
+    iconPaddingPx: 6,
+    isSortAscending: false,
+    displayUserInfo: true,
+    displayTrophyCounts: true,
+    displayGameTitle: false,
+    displayTrophyTitle: false,
+    displayRarity: false
+  };
 
   constructor(
     public psnService: PsnService
@@ -86,58 +93,6 @@ export class AppComponent {
         }
       }
     );
-  }
-
-  getLevelImage(): string {
-    if (this.user.level < 100) {
-      return "assets/images/bronze.png";
-    }
-    if (this.user.level < 200) {
-      return "assets/images/bronze2.png";
-    }
-    if (this.user.level < 300) {
-      return "assets/images/bronze3.png";
-    }
-    if (this.user.level < 400) {
-      return "assets/images/silver.png";
-    }
-    if (this.user.level < 500) {
-      return "assets/images/silver2.png";
-    }
-    if (this.user.level < 600) {
-      return "assets/images/silver3.png";
-    }
-    if (this.user.level < 700) {
-      return "assets/images/gold.png";
-    }
-    if (this.user.level < 800) {
-      return "assets/images/gold2.png";
-    }
-    if (this.user.level < 999) {
-      return "assets/images/gold3.png";
-    }
-    return "assets/images/platinum.png";
-  }
-
-  getStyle() {
-    return 'repeat( auto-fill, minmax(' + String(this.iconWidth + this.iconPadding) + 'px, 1fr) )';
-  }
-
-  save() {
-    let element = document.querySelector("#capture");
-    html2canvas(element as HTMLElement, { useCORS: true, scrollX: 0, scrollY: -window.scrollY }).then(function (canvas) {
-      // Convert the canvas to blob
-      canvas.toBlob(function (blob) {
-        // To download directly on browser default 'downloads' location
-        let link = document.createElement("a");
-        link.download = "image.png";
-        link.href = URL.createObjectURL(blob);
-        link.click();
-
-        // To save manually somewhere in file explorer
-        // window.saveAs(blob, 'image.png');
-      }, 'image/png');
-    });
   }
 
   sort(event?: MatRadioChange) {

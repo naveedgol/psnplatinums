@@ -1,0 +1,56 @@
+<div id="capture">
+    <div class="upperContainer" *ngIf="user && displaySettings.displayUserInfo">
+        <div class="userInfo">
+            <div class="userIdContainer">
+                <img class="avatar" [src]="user.avatar">
+                <span class="userId">{{user.id}}</span>
+            </div>
+            <div class="totalStats">
+                <div class="levelContainer">
+                    <div class="levelUpperContainer">
+                        <img class="levelImage" [src]="getLevelImage()">
+                        <div class="levelNum">{{user.level}}</div>
+                    </div>
+                    <div class="progressBarBase">
+                    </div>
+                    <div class="progressBar" [style.width.%]="user.levelProgress">
+                    </div>
+                </div>
+                <div class="totalCountContainer" *ngIf="displaySettings.displayTrophyCounts">
+                    <div class="totalCountNum">{{user.getTotalCount()}}</div>
+                    <div class="totalCountLabel">Total</div>
+                </div>
+            </div>
+        </div>
+        <div class="divider" *ngIf="displaySettings.displayTrophyCounts"></div>
+        <div class="trophyCountsContainer" *ngIf="displaySettings.displayTrophyCounts">
+            <div class="trophyCount">
+                <img class="trophyImage" src="assets/images/platinum.png">
+                <div class="trophyCountNum">{{user.platinumCount}}</div>
+            </div>
+            <div class="trophyCount">
+                <img class="trophyImage" src="assets/images/gold.png">
+                <div class="trophyCountNum">{{user.goldCount}}</div>
+            </div>
+            <div class="trophyCount">
+                <img class="trophyImage" src="assets/images/silver.png">
+                <div class="trophyCountNum">{{user.silverCount}}</div>
+            </div>
+            <div class="trophyCount">
+                <img class="trophyImage" src="assets/images/bronze.png">
+                <div class="trophyCountNum">{{user.bronzeCount}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="lowerContainer" *ngIf="user && platinums.length">
+        <div class="platinumGrid" [ngStyle]="{ 'grid-template-columns': getStyle() }">
+            <div class="platIconContainer" *ngFor="let plat of platinums">
+                <img [src]="displaySettings.iconType === 'GAME' ? plat.gameIcon : plat.icon" class="platinumIcon"
+                    [style.width.px]="displaySettings.iconWidthPx" [title]="plat.game">
+                <div *ngIf="displaySettings.displayGameTitle">{{plat.game}}</div>
+                <div *ngIf="displaySettings.displayTrophyTitle">{{plat.name}}</div>
+                <div *ngIf="displaySettings.displayRarity">{{plat.rarity}}%</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { retry } from 'rxjs/operators';
+import { User } from '../types/User';
+
 class PlatinumTrophy {
   name: string;
   rarity: number;
@@ -11,25 +13,11 @@ class PlatinumTrophy {
   date: Date;
 }
 
-export class User {
-  id: string;
-  bronzeCount: number;
-  silverCount: number;
-  goldCount: number;
-  platinumCount: number;
-  level: number;
-  avatar: string;
-  levelProgress: number;
-
-  getTotalCount(): number {
-    return this.bronzeCount + this.silverCount + this.goldCount + this.platinumCount;
-  }
-}
-
 @Injectable({
   providedIn: 'root'
 })
 export class PsnService {
+  debug = false;
 
   constructor(private http: HttpClient) { }
 
@@ -39,7 +27,9 @@ export class PsnService {
     const options = {
       responseType: 'text' as const
     };
-    // return this.http.get('./assets/data/profile.html', options);
+    if (this.debug) {
+      return this.http.get('./assets/data/profile.html', options);
+    }
     return this.http.get(this.psnUrl + psn_id + '?completion=platinum', options).pipe(retry(2));
   }
 
@@ -113,8 +103,10 @@ export class PsnService {
       params: { 'type': 'platinum', 'page': pageCount },
       responseType: 'text' as const
     };
+    if (this.debug) {
+      return this.http.get('./assets/data/platpage' + pageCount + '.html', options);
+    }
     return this.http.get(this.psnUrl + psn_id + "/log", options).pipe(retry(10));
-    // return this.http.get('./assets/data/platpage' + pageCount + '.html', options);
   }
 
 }
