@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { User } from '../types/User';
+import { Trophy } from '../types/Trophy';
 import { DisplaySettings } from '../types/DisplaySettings';
 import html2canvas from 'html2canvas';
 
@@ -9,7 +10,7 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./trophy-case.component.scss']
 })
 export class TrophyCaseComponent {
-  @Input() platinums = [];
+  @Input() platinums: Trophy[] = [];
   @Input() user: User;
   @Input() displaySettings: DisplaySettings;
 
@@ -44,13 +45,13 @@ export class TrophyCaseComponent {
     return "assets/images/platinum.png";
   }
 
-  getStyle() {
+  getStyle(): string {
     return 'repeat( auto-fill, minmax('
       + String(this.displaySettings.iconWidthPx + this.displaySettings.iconPaddingPx)
       + 'px, 1fr) )';
   }
 
-  public save() {
+  public save(): void {
     let element = document.querySelector("#capture");
     html2canvas(element as HTMLElement, { useCORS: true, scrollX: 0, scrollY: -window.scrollY }).then(function (canvas) {
       // Convert the canvas to blob

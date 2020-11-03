@@ -14,8 +14,8 @@ import { DisplaySettings } from './types/DisplaySettings';
 export class AppComponent {
   @ViewChild('trophyCase', { static: false }) trophyCase;
 
-  platinums = [];
-  currentPlats = [];
+  platinums: Trophy[] = [];
+  currentPlats: Trophy[] = [];
   user: User;
   userId = '';
   loading = false;

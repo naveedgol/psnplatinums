@@ -2,16 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { retry } from 'rxjs/operators';
 import { User } from '../types/User';
-
-class PlatinumTrophy {
-  name: string;
-  rarity: number;
-  icon: string;
-  game: string;
-  gameIcon: string;
-  num: number;
-  date: Date;
-}
+import { Trophy } from '../types/Trophy';
 
 @Injectable({
   providedIn: 'root'
@@ -76,7 +67,7 @@ export class PsnService {
     const plats = [];
 
     for (var i = 0; i < titles.length; ++i) {
-      var trophy = new PlatinumTrophy();
+      var trophy = new Trophy();
       trophy.name = (titles[i] as HTMLElement).innerText;
       // trophy.rarity = games[i].innerText;
       trophy.icon = (icons[i] as HTMLImageElement).src;
