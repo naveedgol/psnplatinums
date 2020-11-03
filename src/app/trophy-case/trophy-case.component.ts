@@ -58,7 +58,7 @@ export class TrophyCaseComponent {
     let element = document.querySelector("#capture");
     from(html2canvas(element as HTMLElement, { useCORS: true, scrollX: 0, scrollY: -window.scrollY })).subscribe(
       canvas => {
-        canvas.toBlob((blob) => {
+        (canvas as HTMLCanvasElement).toBlob((blob) => {
           // To download directly on browser default 'downloads' location
           let link = document.createElement("a");
           link.download = "image.png";
