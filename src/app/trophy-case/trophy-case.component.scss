@@ -57,7 +57,7 @@
 .trophyImage {
     max-height: 80px;
     height: 5vw;
-    min-height: 40px;
+    min-height: 30px;
 }
 
 .trophyCountsContainer {
@@ -75,8 +75,8 @@
 }
 
 .trophyCountNum {
-    font-size: 3vw;
-    padding-left: 10px;
+    font-size: calc(12px + 1.5vw);
+    padding-left: 8px;
 }
 
 .platinumIcon {

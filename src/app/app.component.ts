@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { PsnService } from './services/psn.service';
-import { MatRadioChange } from '@angular/material/radio';
 import { FormGroup, FormControl } from '@angular/forms';
 import { User } from './types/User';
 import { DisplaySettings } from './types/DisplaySettings';
@@ -29,6 +28,7 @@ export class AppComponent {
     start: new FormControl(new Date('January 1, 2007')),
     end: new FormControl(new Date())
   });
+  gameFilterQuery = '';
 
   displaySettings: DisplaySettings = {
     iconType: "TROPHY",
@@ -78,7 +78,7 @@ export class AppComponent {
               this.currentPlats = this.platinums;
               if (this.platinums.length === this.user.platinumCount) {
                 this.loading = false;
-                this.sort();
+                this.applyFilters();
               }
             }, error => {
               console.log("platpage" + ((i / 50) + 1), error);
@@ -96,7 +96,7 @@ export class AppComponent {
     );
   }
 
-  sort(event?: MatRadioChange) {
+  sort(): void {
     if (this.sortOrder === "date") {
       this.currentPlats.sort((a, b) => (a.num > b.num ? -1 : 1));
     }
@@ -112,16 +112,29 @@ export class AppComponent {
     }
   }
 
-  dateChanged(event) {
+  dateChanged(): void {
     let startDate: Date = new Date(this.range.value.start);
     let endDate: Date = new Date(this.range.value.end);
-    this.currentPlats = this.platinums.filter(p => {
+    this.currentPlats = this.currentPlats.filter(p => {
       return p.date.getTime() >= startDate.getTime() && p.date.getTime() <= endDate.getTime();
     });
   }
 
-  uponIsSaveLoading(a) {
-    this.isSaveLoading = a;
+  gameFilter(): void {
+    this.currentPlats = this.currentPlats.filter(p => {
+      return p.game.toUpperCase().includes(this.gameFilterQuery.toUpperCase());
+    });
+  }
+
+  applyFilters(): void {
+    this.currentPlats = this.platinums;
+    this.dateChanged();
+    this.sort();
+    this.gameFilter();
+  }
+
+  uponIsSaveLoading(stateChange: boolean): void {
+    this.isSaveLoading = stateChange;
   }
 }
 

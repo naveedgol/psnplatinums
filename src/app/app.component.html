@@ -43,7 +43,8 @@
           <mat-divider></mat-divider>
           <section class="section">
             <h2>Sort order</h2>
-            <mat-radio-group class="radioGroup" aria-label="Sort Order" [(ngModel)]="sortOrder" (change)="sort($event)">
+            <mat-radio-group class="radioGroup" aria-label="Sort Order" [(ngModel)]="sortOrder"
+              (change)="applyFilters()">
               <mat-radio-button class="radioButton" value="date">Date</mat-radio-button>
               <mat-radio-button class="radioButton" value="rarity">Rarity</mat-radio-button>
               <mat-radio-button class="radioButton" value="alpha">Alphabetical (Game)</mat-radio-button>
@@ -54,7 +55,7 @@
           <section class="section">
             <h2>Sort direction</h2>
             <mat-radio-group class="radioGroup" aria-label="Sort Direction" [(ngModel)]="sortDirection"
-              (change)="sort($event)">
+              (change)="applyFilters()">
               <mat-radio-button class="radioButton" value="asc">Ascending</mat-radio-button>
               <mat-radio-button class="radioButton" value="des">Descending</mat-radio-button>
             </mat-radio-group>
@@ -81,11 +82,20 @@
             <mat-form-field appearance="fill">
               <mat-label>Enter a date range</mat-label>
               <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-                <input matStartDate formControlName="start" placeholder="Start date" (dateChange)="dateChanged($event)">
-                <input matEndDate formControlName="end" placeholder="End date" (dateChange)="dateChanged($event)">
+                <input matStartDate formControlName="start" placeholder="Start date" (dateChange)="applyFilters()">
+                <input matEndDate formControlName="end" placeholder="End date" (dateChange)="applyFilters()">
               </mat-date-range-input>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+          </section>
+
+          <mat-divider></mat-divider>
+          <section class="section dateSection">
+            <h2 class="gameFilterTitle">Game Title Filter</h2>
+            <mat-form-field>
+              <input matInput #gameFilterInput placeholder="Enter a game title" autocomplete="off"
+                [(ngModel)]="gameFilterQuery" (keyup)="applyFilters()">
             </mat-form-field>
           </section>
 
