@@ -71,11 +71,9 @@ export class PsnService {
       var trophy = new Trophy();
       trophy.name = (titles[i] as HTMLElement).innerText;
       // trophy.rarity = games[i].innerText;
-      trophy.icon = "https://res.cloudinary.com/dfu5kawco/image/upload/game_images/"
-        + (icons[i] as HTMLImageElement).src.split("/").slice(-1)[0];
+      trophy.icon = (icons[i] as HTMLImageElement).src;
       trophy.game = (games[i] as HTMLElement).title;
-      trophy.gameIcon = "https://res.cloudinary.com/dtsfplgsh/image/upload/game_images/game_"
-        + (icons[i] as HTMLImageElement).src.split("/").slice(-1)[0];
+      trophy.gameIcon = (games[i] as HTMLImageElement).src;
       trophy.num = parseInt(nums[i].innerText.substring(1).replace(/,/g, ''));
       trophy.rarity = parseFloat((rarities[i] as HTMLElement).innerText);
       let date: Date = new Date();
