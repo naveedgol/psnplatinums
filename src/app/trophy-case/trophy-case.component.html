@@ -44,7 +44,9 @@
     </div>
     <div class="lowerContainer" *ngIf="user && platinums.length">
         <div class="platinumGrid" [ngStyle]="{ 'grid-template-columns': getStyle() }">
-            <div class="platIconContainer" *ngFor="let plat of platinums">
+            <div class="platIconContainer" *ngFor="let plat of platinums"
+                [style.marginTop.px]="displaySettings.rowSpacingPx"
+                [style.marginBottom.px]="displaySettings.rowSpacingPx">
                 <img [src]="displaySettings.iconType === 'GAME' ? plat.gameIcon : plat.icon" class="platinumIcon"
                     [style.width.px]="displaySettings.iconWidthPx" [title]="plat.game">
                 <div *ngIf="displaySettings.displayGameTitle">{{plat.game}}</div>

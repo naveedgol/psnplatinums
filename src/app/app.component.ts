@@ -33,7 +33,8 @@ export class AppComponent {
   displaySettings: DisplaySettings = {
     iconType: "TROPHY",
     iconWidthPx: 56,
-    iconPaddingPx: 6,
+    columnSpacingPx: 6,
+    rowSpacingPx: 4,
     isSortAscending: false,
     displayUserInfo: true,
     displayTrophyCounts: true,

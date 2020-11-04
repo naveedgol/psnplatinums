@@ -42,6 +42,21 @@
 
           <mat-divider></mat-divider>
           <section class="section">
+            <h2>Column Spacing</h2>
+            <mat-slider class="slider" thumbLabel min="0" max="100" step="1"
+              [(ngModel)]="displaySettings.columnSpacingPx">
+            </mat-slider>
+          </section>
+
+          <mat-divider></mat-divider>
+          <section class="section">
+            <h2>Row Spacing</h2>
+            <mat-slider class="slider" thumbLabel min="0" max="100" step="1" [(ngModel)]="displaySettings.rowSpacingPx">
+            </mat-slider>
+          </section>
+
+          <mat-divider></mat-divider>
+          <section class="section">
             <h2>Sort order</h2>
             <mat-radio-group class="radioGroup" aria-label="Sort Order" [(ngModel)]="sortOrder"
               (change)="applyFilters()">

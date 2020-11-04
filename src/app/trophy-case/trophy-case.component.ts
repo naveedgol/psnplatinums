@@ -49,7 +49,7 @@ export class TrophyCaseComponent {
 
   getStyle(): string {
     return 'repeat( auto-fill, minmax('
-      + String(this.displaySettings.iconWidthPx + this.displaySettings.iconPaddingPx)
+      + String(this.displaySettings.iconWidthPx + this.displaySettings.columnSpacingPx)
       + 'px, 1fr) )';
   }
 

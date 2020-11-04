@@ -1,7 +1,8 @@
 export class DisplaySettings {
     iconType: string;
     iconWidthPx: number;
-    iconPaddingPx: number;
+    columnSpacingPx: number;
+    rowSpacingPx: number;
     isSortAscending: boolean;
     displayUserInfo: boolean;
     displayTrophyCounts: boolean;
