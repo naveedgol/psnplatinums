@@ -90,8 +90,8 @@ mat-progress-bar {
 
 .radioGroup {
     display: flex;
-    flex-flow: wrap;
-    margin: 15px 0;
+    flex-direction: column;
+    // margin: 15px 0;
 }
 
 .radioButton {
@@ -109,4 +109,26 @@ a {
 
 .gameFilterTitle {
     margin-bottom: 0;
+}
+
+.searchInputBox {
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.visibilityBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.settingsTitle {
+    margin-top: 15px;
+}
+
+.saveButtonDivider {
+    margin-top: 20px;
 }
