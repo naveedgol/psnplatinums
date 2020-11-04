@@ -38,6 +38,7 @@
     flex-grow: 1;    
     display: flex;
     justify-content: flex-end;
+    font-family: 'SST Roman';
 }
 
 .totalCountContainer {
@@ -58,6 +59,7 @@
     max-height: 80px;
     height: 5vw;
     min-height: 30px;
+    filter: drop-shadow(3px 3px 5px #222);
 }
 
 .trophyCountsContainer {
@@ -81,8 +83,7 @@
 
 .platinumIcon {
     border-radius: 6px;
-    box-shadow: 2px 2px 10px 0px black;
-    // margin: 4px;
+    filter: drop-shadow(2px 2px 7px black);
 }
 
 .lowerContainer {
