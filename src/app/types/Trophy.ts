@@ -1,4 +1,5 @@
 export class Trophy {
+    gameId: string;
     name: string;
     rarity: number;
     icon: string;

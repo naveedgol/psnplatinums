@@ -10,8 +10,43 @@ import { Observable } from 'rxjs';
 })
 export class PsnService {
   debug = false;
+  dict = {};
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.http.get('./assets/data/images.json').subscribe(
+      data => {
+        this.dict = data;
+      }
+    )
+  }
+
+  getHigherQualityImages() {
+    for (var i = 1; i <= 105; ++i) {
+      const options = {
+        responseType: 'text' as const,
+        params: { 'type': 'platinum', 'page': i.toString() },
+      };
+      this.http.get(this.psnUrl + 'trophies', options).pipe(retry(10)).subscribe(
+        data => {
+          const domparser = new DOMParser();
+          const doc = domparser.parseFromString(data, "text/html");
+          const games = doc.querySelectorAll("picture.game");
+          const trophies = doc.querySelectorAll("picture.trophy");
+          // console.log(games[9].childNodes[1].srcset.split(" ")[1]);
+          for (var i = 0; i < games.length; ++i) {
+            const gameIcon = (games[i].childNodes[1] as HTMLImageElement).srcset.split(" ")[1];
+            const gameId = gameIcon.split("/")[4]
+            this.dict[gameId] = {
+              'gameIcon': gameIcon,
+              'icon': (trophies[i].childNodes[1] as HTMLImageElement).srcset.split(" ")[1]
+            }
+          }
+          if (Object.keys(this.dict).length > 100 * 50)
+            console.log(JSON.stringify(this.dict));
+        }
+      )
+    }
+  }
 
   psnUrl = 'https://cors-anywhere.herokuapp.com/https://psnprofiles.com/';
 
@@ -69,11 +104,16 @@ export class PsnService {
 
     for (var i = 0; i < titles.length; ++i) {
       var trophy = new Trophy();
+      trophy.gameId = (games[i] as HTMLImageElement).src.split("/")[4];
       trophy.name = (titles[i] as HTMLElement).innerText;
       // trophy.rarity = games[i].innerText;
       trophy.icon = (icons[i] as HTMLImageElement).src;
       trophy.game = (games[i] as HTMLElement).title;
       trophy.gameIcon = (games[i] as HTMLImageElement).src;
+      if (this.dict[trophy.gameId]) {
+        trophy.icon = this.dict[trophy.gameId].icon;
+        trophy.gameIcon = this.dict[trophy.gameId].gameIcon;
+      }
       trophy.num = parseInt(nums[i].innerText.substring(1).replace(/,/g, ''));
       trophy.rarity = parseFloat((rarities[i] as HTMLElement).innerText);
       let date: Date = new Date();
