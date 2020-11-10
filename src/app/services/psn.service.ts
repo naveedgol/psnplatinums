@@ -87,7 +87,7 @@ export class PsnService {
   }
 
   getMonthNumberFromString(month: string): number {
-    return new Date(Date.parse(month + " 1, 2012")).getMonth() + 1
+    return new Date(Date.parse(month + " 1, 2012")).getMonth()
   }
 
   parsePlats(data: string): Trophy[] {
