@@ -114,8 +114,11 @@ export class AppComponent {
   }
 
   dateChanged(): void {
-    let startDate: Date = new Date(this.range.value.start);
-    let endDate: Date = new Date(this.range.value.end);
+    const startDate: Date = new Date(this.range.value.start);
+    const endDate: Date = new Date(this.range.value.end);
+    // move to End of Day
+    endDate.setHours(23);
+    endDate.setMinutes(59);
     this.currentPlats = this.currentPlats.filter(p => {
       return p.date.getTime() >= startDate.getTime() && p.date.getTime() <= endDate.getTime();
     });
