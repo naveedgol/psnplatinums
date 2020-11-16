@@ -7,4 +7,5 @@ export class Trophy {
     gameIcon: string;
     num: number;
     date: Date;
+    platform: string;
 }

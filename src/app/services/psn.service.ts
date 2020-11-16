@@ -20,33 +20,33 @@ export class PsnService {
     )
   }
 
-  getHigherQualityImages() {
-    for (var i = 1; i <= 105; ++i) {
-      const options = {
-        responseType: 'text' as const,
-        params: { 'type': 'platinum', 'page': i.toString() },
-      };
-      this.http.get(this.psnUrl + 'trophies', options).pipe(retry(10)).subscribe(
-        data => {
-          const domparser = new DOMParser();
-          const doc = domparser.parseFromString(data, "text/html");
-          const games = doc.querySelectorAll("picture.game");
-          const trophies = doc.querySelectorAll("picture.trophy");
-          // console.log(games[9].childNodes[1].srcset.split(" ")[1]);
-          for (var i = 0; i < games.length; ++i) {
-            const gameIcon = (games[i].childNodes[1] as HTMLImageElement).srcset.split(" ")[1];
-            const gameId = gameIcon.split("/")[4]
-            this.dict[gameId] = {
-              'gameIcon': gameIcon,
-              'icon': (trophies[i].childNodes[1] as HTMLImageElement).srcset.split(" ")[1]
-            }
-          }
-          if (Object.keys(this.dict).length > 100 * 50)
-            console.log(JSON.stringify(this.dict));
-        }
-      )
-    }
-  }
+  // getHigherQualityImages() {
+  //   for (var i = 1; i <= 105; ++i) {
+  //     const options = {
+  //       responseType: 'text' as const,
+  //       params: { 'type': 'platinum', 'page': i.toString() },
+  //     };
+  //     this.http.get(this.psnUrl + 'trophies', options).pipe(retry(10)).subscribe(
+  //       data => {
+  //         const domparser = new DOMParser();
+  //         const doc = domparser.parseFromString(data, "text/html");
+  //         const games = doc.querySelectorAll("picture.game");
+  //         const trophies = doc.querySelectorAll("picture.trophy");
+  //         // console.log(games[9].childNodes[1].srcset.split(" ")[1]);
+  //         for (var i = 0; i < games.length; ++i) {
+  //           const gameIcon = (games[i].childNodes[1] as HTMLImageElement).srcset.split(" ")[1];
+  //           const gameId = gameIcon.split("/")[4]
+  //           this.dict[gameId] = {
+  //             'gameIcon': gameIcon,
+  //             'icon': (trophies[i].childNodes[1] as HTMLImageElement).srcset.split(" ")[1]
+  //           }
+  //         }
+  //         if (Object.keys(this.dict).length > 100 * 50)
+  //           console.log(JSON.stringify(this.dict));
+  //       }
+  //     )
+  //   }
+  // }
 
   psnUrl = 'https://cors-anywhere.herokuapp.com/https://psnprofiles.com/';
 
@@ -110,9 +110,11 @@ export class PsnService {
       trophy.icon = (icons[i] as HTMLImageElement).src;
       trophy.game = (games[i] as HTMLElement).title;
       trophy.gameIcon = (games[i] as HTMLImageElement).src;
-      if (this.dict[trophy.gameId]) {
-        trophy.icon = this.dict[trophy.gameId].icon;
-        trophy.gameIcon = this.dict[trophy.gameId].gameIcon;
+      const cachedImage = this.dict[trophy.gameId];
+      if (cachedImage) {
+        trophy.icon = cachedImage.icon;
+        trophy.gameIcon = cachedImage.gameIcon;
+        trophy.platform = cachedImage.platform;
       }
       trophy.num = parseInt(nums[i].innerText.substring(1).replace(/,/g, ''));
       trophy.rarity = parseFloat((rarities[i] as HTMLElement).innerText);
