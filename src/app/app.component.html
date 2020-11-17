@@ -147,6 +147,23 @@
               </section>
 
             </mat-expansion-panel>
+
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Trophy Cabinet
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-form-field appearance="fill">
+                <mat-label>Select your platinums</mat-label>
+                <mat-select [formControl]="cabinetForm" (selectionChange)="applyFilters()" multiple>
+                  <mat-option *ngFor="let plat of platinums" [value]="plat">{{plat.game}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </mat-expansion-panel>
+
           </mat-accordion>
           <mat-divider class="saveButtonDivider"></mat-divider>
           <button class="saveButton" mat-raised-button color="primary" (click)="trophyCase.save()">Save as
@@ -157,7 +174,7 @@
     </mat-card-content>
   </mat-card>
 
-  <app-trophy-case #trophyCase *ngIf="user" [platinums]="currentPlats" [user]="user" [displaySettings]="displaySettings"
-    (uponIsSaveLoading)="uponIsSaveLoading($event)">
+  <app-trophy-case #trophyCase *ngIf="user" [platinums]="currentPlats" [cabinet]="cabinetForm.value" [user]="user"
+    [displaySettings]="displaySettings" (uponIsSaveLoading)="uponIsSaveLoading($event)">
   </app-trophy-case>
 </div>

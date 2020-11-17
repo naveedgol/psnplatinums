@@ -12,6 +12,7 @@ import { from } from 'rxjs';
 })
 export class TrophyCaseComponent {
   @Input() platinums: Trophy[] = [];
+  @Input() cabinet: Trophy[] = [];
   @Input() user: User;
   @Input() displaySettings: DisplaySettings;
   @Output() uponIsSaveLoading: EventEmitter<any> = new EventEmitter(false);

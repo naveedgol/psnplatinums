@@ -60,6 +60,7 @@ export class AppComponent {
     this.platinums = [];
     this.currentPlats = []
     this.userId = val;
+    this.cabinetForm = new FormControl();
     this.psnService.getProfile(this.userId).subscribe(
       data => {
         this.user = this.psnService.parseUser(data, this.userId);
@@ -79,6 +80,7 @@ export class AppComponent {
               this.currentPlats = this.platinums;
               if (this.platinums.length === this.user.platinumCount) {
                 this.loading = false;
+                this.platinums.sort((a, b) => (a.game.toUpperCase() < b.game.toUpperCase() ? -1 : 1));
                 this.applyFilters();
               }
             }, error => {
@@ -130,8 +132,16 @@ export class AppComponent {
     });
   }
 
+  cabinetFilter(val: Trophy[]): void {
+    if (!val) return;
+    this.currentPlats = this.currentPlats.filter(p => {
+      return !val.includes(p);
+    });
+  }
+
   applyFilters(): void {
     this.currentPlats = this.platinums;
+    this.cabinetFilter(this.cabinetForm.value);
     this.dateChanged();
     this.sort();
     this.gameFilter();
@@ -139,6 +149,12 @@ export class AppComponent {
 
   uponIsSaveLoading(stateChange: boolean): void {
     this.isSaveLoading = stateChange;
+  }
+
+  cabinetForm = new FormControl();
+
+  cabinetChange(event) {
+    console.log(event);
   }
 }
 

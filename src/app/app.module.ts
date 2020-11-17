@@ -19,6 +19,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { TrophyCaseComponent } from './trophy-case/trophy-case.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSelectModule
   ],
   providers: [PsnService],
   bootstrap: [AppComponent],

@@ -1,6 +1,7 @@
 :host {
     flex-grow: 4;
     font-family: SST Light;
+    max-width: 100%;
 }
 
 .upperContainer {
@@ -154,11 +155,26 @@
     margin-top: 4px;
     margin-bottom: 4px;
     align-items: center;
-    // justify-content: center;
+}
+
+.cabinetPlatIconContainer {
+    max-width: 100px;
 }
 
 .totalPage {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+}
+
+.cabinetContainer {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    overflow: auto;
+}
+
+.title {
+    font-family: SST Medium;
+    margin-top: 5px;
 }

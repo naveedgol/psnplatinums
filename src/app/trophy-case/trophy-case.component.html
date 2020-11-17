@@ -43,14 +43,25 @@
         </div>
     </div>
     <div class="lowerContainer" *ngIf="user && platinums.length">
+        <div class="cabinetContainer" *ngIf="cabinet && cabinet.length">
+            <div class="platIconContainer cabinetPlatIconContainer" *ngFor="let plat of cabinet"
+                [style.marginTop.px]="displaySettings.rowSpacingPx"
+                [style.marginBottom.px]="displaySettings.rowSpacingPx">
+                <img [src]="displaySettings.iconType === 'GAME' ? plat.gameIcon : plat.icon" class="platinumIcon"
+                    [style.width.px]="100" [title]="plat.game">
+                <div class="title">{{plat.game}}</div>
+                <div>{{plat.rarity}}%</div>
+            </div>
+        </div>
+
         <div class="platinumGrid" [ngStyle]="{ 'grid-template-columns': getStyle() }">
             <div class="platIconContainer" *ngFor="let plat of platinums"
                 [style.marginTop.px]="displaySettings.rowSpacingPx"
                 [style.marginBottom.px]="displaySettings.rowSpacingPx">
                 <img [src]="displaySettings.iconType === 'GAME' ? plat.gameIcon : plat.icon" class="platinumIcon"
                     [style.width.px]="displaySettings.iconWidthPx" [title]="plat.game">
-                <div *ngIf="displaySettings.displayGameTitle">{{plat.game}}</div>
-                <div *ngIf="displaySettings.displayTrophyTitle">{{plat.name}}</div>
+                <div *ngIf="displaySettings.displayGameTitle" class="title">{{plat.game}}</div>
+                <div *ngIf="displaySettings.displayTrophyTitle" class="title">{{plat.name}}</div>
                 <div *ngIf="displaySettings.displayRarity">{{plat.rarity}}%</div>
             </div>
         </div>
