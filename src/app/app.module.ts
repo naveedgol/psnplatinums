@@ -20,6 +20,8 @@ import { TrophyCaseComponent } from './trophy-case/trophy-case.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatNativeDateModule,
     MatProgressBarModule,
     MatExpansionModule,
-    MatSelectModule
+    MatSelectModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [PsnService],
   bootstrap: [AppComponent],
