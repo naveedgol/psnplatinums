@@ -63,6 +63,9 @@ THE SOFTWARE.
 @angular/platform-browser
 MIT
 
+@angular/service-worker
+MIT
+
 css-line-break
 MIT
 Copyright (c) 2017 Niklas von Hertzen
