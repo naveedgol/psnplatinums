@@ -1,1 +1,64 @@
-<p>wrapped works!</p>
+<mat-card class="outer-container">
+    <mat-card-content>
+        <div class="milestone-container">
+            <div [style.marginRight.px]="10" class="text">
+                Your 2020 started with the platinum in {{firstPlatinum.game}}...
+            </div>
+            <div class="platIconContainer">
+                <img [src]="firstPlatinum.icon" [style.width.px]="90">
+                <div>{{firstPlatinum.name}}</div>
+                <div class="rarity">{{firstPlatinum.rarity}}%</div>
+            </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="milestone-container">
+            <div class="platIconContainer">
+                <img [src]="lastPlatinum.icon" [style.width.px]="90">
+                <div>{{lastPlatinum.name}}</div>
+                <div class="rarity">{{lastPlatinum.rarity}}%</div>
+            </div>
+            <div [style.marginLeft.px]="10" class="text">
+                ...and it ended with the platinum in {{lastPlatinum.game}}.
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div class="milestone-container busiest-month">
+            <div class="text">
+                You kept busiest in {{busiestMonth}}, when you earned {{busiestMonthCount}} platinum trophies.
+            </div>
+            <div class="busiest-month-grid">
+                <app-trophy-case [style.width.%]="100" [style.marginTop.px]="20" #trophyCase *ngIf="psnService.user"
+                    [platinums]="busyMonthPlats" [cabinet]="[]" [user]="psnService.user"
+                    [displaySettings]="displaySettings" (uponIsSaveLoading)="uponIsSaveLoading($event)">
+                </app-trophy-case>
+            </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="milestone-container busiest-month">
+            <div class="text">
+                You earned some rare plats this year, with an annual average rarity of {{avgRarity.toFixed(2)}}%.
+            </div>
+            <app-trophy-case [style.width.%]="100" [style.marginTop.px]="20" #trophyCase *ngIf="psnService.user"
+                [platinums]="rarePlats" [cabinet]="[]" [user]="psnService.user" [displaySettings]="displaySettings"
+                (uponIsSaveLoading)="uponIsSaveLoading($event)">
+            </app-trophy-case>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="milestone-container busiest-month">
+            <div class="text">
+                You earned {{platCount}} platinum trophies in 2020! Well done {{psnService.user.id}}!
+            </div>
+            <app-trophy-case [style.width.%]="100" [style.marginTop.px]="20" #trophyCase *ngIf="psnService.user"
+                [platinums]="yearPlats" [cabinet]="[]" [user]="psnService.user" [displaySettings]="yearDS"
+                (uponIsSaveLoading)="uponIsSaveLoading($event)">
+            </app-trophy-case>
+        </div>
+    </mat-card-content>
+</mat-card>

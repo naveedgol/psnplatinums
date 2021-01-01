@@ -117,6 +117,8 @@ export class PsnService {
   }
 
   async fetchProfile(psn_id: string) {
+    this.platinums = [];
+
     let profile = '';
     await this.getProfile(psn_id).toPromise()
       .then(data => {

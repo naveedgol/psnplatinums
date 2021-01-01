@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { User } from '../../types/User';
 import { DisplaySettings } from '../../types/DisplaySettings';
 import { Trophy } from '../../types/Trophy';
+import { FilterService } from 'src/app/services/filter.service';
 
 @Component({
   selector: 'app-mosaic',
@@ -36,56 +37,17 @@ export class MosaicComponent {
     displayRarity: false
   };
 
-  constructor(public psnService: PsnService) {
+  constructor(public psnService: PsnService,
+    private filterService: FilterService) {
     this.applyFilters();
-  }
-
-  sort(): void {
-    if (this.sortOrder === "date") {
-      this.currentPlats.sort((a, b) => (a.num > b.num ? -1 : 1));
-    }
-    else if (this.sortOrder === "rarity") {
-      this.currentPlats.sort((a, b) => (a.rarity > b.rarity ? -1 : 1));
-    }
-    else if (this.sortOrder === "alpha") {
-      this.currentPlats.sort((a, b) => (a.game.toUpperCase() < b.game.toUpperCase() ? -1 : 1));
-    }
-
-    if (this.sortDirection == 'asc') {
-      this.currentPlats.reverse();
-    }
-  }
-
-  dateChanged(): void {
-    const startDate: Date = new Date(this.range.value.start);
-    const endDate: Date = new Date(this.range.value.end);
-    // move to End of Day
-    endDate.setHours(23);
-    endDate.setMinutes(59);
-    this.currentPlats = this.currentPlats.filter(p => {
-      return p.date.getTime() >= startDate.getTime() && p.date.getTime() <= endDate.getTime();
-    });
-  }
-
-  gameFilter(): void {
-    this.currentPlats = this.currentPlats.filter(p => {
-      return p.game.toUpperCase().includes(this.gameFilterQuery.toUpperCase());
-    });
-  }
-
-  cabinetFilter(val: Trophy[]): void {
-    if (!val) return;
-    this.currentPlats = this.currentPlats.filter(p => {
-      return !val.includes(p);
-    });
   }
 
   applyFilters(): void {
     this.currentPlats = this.psnService.platinums;
-    this.cabinetFilter(this.cabinetForm.value);
-    this.dateChanged();
-    this.sort();
-    this.gameFilter();
+    this.currentPlats = this.filterService.cabinetFilter(this.cabinetForm.value, this.currentPlats);
+    this.currentPlats = this.filterService.dateFilter(new Date(this.range.value.start), new Date(this.range.value.end), this.currentPlats);
+    this.filterService.sort(this.sortOrder, this.sortDirection, this.currentPlats);
+    this.currentPlats = this.filterService.gameFilter(this.currentPlats, this.gameFilterQuery);
   }
 
   uponIsSaveLoading(stateChange: boolean): void {
@@ -93,9 +55,5 @@ export class MosaicComponent {
   }
 
   cabinetForm = new FormControl();
-
-  cabinetChange(event) {
-    console.log(event);
-  }
 }
 

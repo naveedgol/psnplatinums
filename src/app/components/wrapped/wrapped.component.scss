@@ -1,0 +1,56 @@
+.outer-container {
+    background-image: linear-gradient(90deg,#002a5c,#00397e,#002a5c);
+    font-family: 'SST Medium';
+}
+
+.milestone-container {
+    animation: fadeIn ease 2s;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+.platIconContainer {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin: 10px;
+    align-items: center;
+    font-size: 14px;
+    text-align: center;
+    width: 100px;
+}
+
+mat-divider {
+    margin-bottom: 10px;
+}
+
+.mat-divider-horizontal {
+    position: static !important;
+}
+
+.busiest-month {
+    flex-direction: column;
+}
+
+.busiest-month-grid {
+    display: flex;
+    overflow: auto;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.rarity {
+    font-family: 'SST Light';
+}
+
+.text {
+    font-size: 20px;
+}
