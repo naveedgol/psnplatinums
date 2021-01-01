@@ -52,7 +52,7 @@ export class PsnService {
     user.goldCount = this.parseCount(doc, "gold");
     user.platinumCount = this.parseCount(doc, "platinum");
     user.level = parseInt((doc.querySelectorAll("li.icon-sprite.level")[0] as HTMLElement).innerText);
-    user.avatar = doc.getElementsByTagName("img")[6].src;
+    user.avatar = doc.getElementsByTagName('meta')[8].content;
     var levelProgress = doc.querySelector("div.progress-bar").childNodes[1].textContent.substring(6, 8);
     if (levelProgress[1] === '%') {
       levelProgress = levelProgress.substring(0, 1);
