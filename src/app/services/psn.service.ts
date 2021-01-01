@@ -26,12 +26,13 @@ export class PsnService {
 
   getProfile(psn_id): Observable<any> {
     const options = {
-      responseType: 'text' as const
+      responseType: 'text' as const,
+      params: { 'psn_id': psn_id },
     };
     if (this.debug) {
       return this.http.get('./assets/data/profile.html', options);
     }
-    return this.http.get(this.psnUrl + psn_id + '?completion=platinum', options).pipe(retry(2));
+    return this.http.get("https://hvo2t8h0ck.execute-api.us-east-1.amazonaws.com/default/fetchProfile", options).pipe(retry(2));
   }
 
   parseCount(doc, trophyClass: string): number {
@@ -107,13 +108,13 @@ export class PsnService {
   getPlatinums(psn_id: string, pageCount: number): Observable<any> {
     const options = {
       headers: { 'accept': 'text/html' },
-      params: { 'type': 'platinum', 'page': pageCount.toString() },
+      params: { 'psn_id': psn_id, 'page': pageCount.toString() },
       responseType: 'text' as const
     };
     if (this.debug) {
       return this.http.get('./assets/data/platpage' + pageCount.toString() + '.html', options);
     }
-    return this.http.get(this.psnUrl + psn_id + "/log", options).pipe(retry(10));
+    return this.http.get("https://hvo2t8h0ck.execute-api.us-east-1.amazonaws.com/fetchPlatinums", options).pipe(retry(1));
   }
 
   async fetchProfile(psn_id: string) {
@@ -146,7 +147,6 @@ export class PsnService {
           throw "An error occured. Try disable adblock.";
         });
     }
-    console.log(this.user);
 
     //   .subscribe(
     //     data => {
