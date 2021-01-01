@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { User } from '../types/User';
-import { Trophy } from '../types/Trophy';
-import { DisplaySettings } from '../types/DisplaySettings';
+import { User } from '../../types/User';
+import { Trophy } from '../../types/Trophy';
+import { DisplaySettings } from '../../types/DisplaySettings';
 import html2canvas from 'html2canvas';
 import { from } from 'rxjs';
 

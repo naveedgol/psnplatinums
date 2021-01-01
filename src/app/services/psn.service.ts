@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 export class PsnService {
   debug = false;
   dict = {};
+  user: User;
+  platinums: Trophy[] = [];
 
   constructor(private http: HttpClient) {
     this.http.get('./assets/data/images.json').subscribe(
@@ -19,34 +21,6 @@ export class PsnService {
       }
     )
   }
-
-  // getHigherQualityImages() {
-  //   for (var i = 1; i <= 105; ++i) {
-  //     const options = {
-  //       responseType: 'text' as const,
-  //       params: { 'type': 'platinum', 'page': i.toString() },
-  //     };
-  //     this.http.get(this.psnUrl + 'trophies', options).pipe(retry(10)).subscribe(
-  //       data => {
-  //         const domparser = new DOMParser();
-  //         const doc = domparser.parseFromString(data, "text/html");
-  //         const games = doc.querySelectorAll("picture.game");
-  //         const trophies = doc.querySelectorAll("picture.trophy");
-  //         // console.log(games[9].childNodes[1].srcset.split(" ")[1]);
-  //         for (var i = 0; i < games.length; ++i) {
-  //           const gameIcon = (games[i].childNodes[1] as HTMLImageElement).srcset.split(" ")[1];
-  //           const gameId = gameIcon.split("/")[4]
-  //           this.dict[gameId] = {
-  //             'gameIcon': gameIcon,
-  //             'icon': (trophies[i].childNodes[1] as HTMLImageElement).srcset.split(" ")[1]
-  //           }
-  //         }
-  //         if (Object.keys(this.dict).length > 100 * 50)
-  //           console.log(JSON.stringify(this.dict));
-  //       }
-  //     )
-  //   }
-  // }
 
   psnUrl = 'https://cors-anywhere.herokuapp.com/https://psnprofiles.com/';
 
@@ -140,6 +114,74 @@ export class PsnService {
       return this.http.get('./assets/data/platpage' + pageCount.toString() + '.html', options);
     }
     return this.http.get(this.psnUrl + psn_id + "/log", options).pipe(retry(10));
+  }
+
+  async fetchProfile(psn_id: string) {
+    let profile = '';
+    await this.getProfile(psn_id).toPromise()
+      .then(data => {
+        profile = data;
+      })
+      .catch(err => {
+        if (err.status === 429) {
+          throw "An error occured. Servers throttled, please try later.";
+        } else {
+          throw "An error occured.";
+        }
+      });
+
+    this.user = this.parseUser(profile, psn_id);
+    if (this.user === undefined) {
+      throw "User does not exist. Try adding your profile to PSNProfiles.";
+    }
+
+    for (var i = 0; i < this.user.platinumCount; i += 50) {
+      await this.getPlatinums(psn_id, (i / 50) + 1).toPromise()
+        .then(data => {
+          this.platinums = this.platinums.concat(this.parsePlats(data));
+        })
+        .catch(() => {
+          throw "An error occured. Try disable adblock.";
+        });
+    }
+    console.log(this.user);
+
+    //   .subscribe(
+    //     data => {
+    //       this.user = this.psnService.parseUser(data, this.userId);
+    //       if (this.user === undefined) {
+    //         console.log("User does not exist.");
+    //         this.error = true;
+    //         this.loading = false;
+    //         return;
+    //       }
+    //       if (this.user.platinumCount === 0) {
+    //         this.loading = false;
+    //       }
+    //       for (var i = 0; i < this.user.platinumCount; i += 50) {
+    //         this.psnService.getPlatinums(this.userId, (i / 50) + 1).subscribe(
+    //           data => {
+    //             this.platinums = this.platinums.concat(this.psnService.parsePlats(data));
+    //             this.currentPlats = this.platinums;
+    //             if (this.platinums.length === this.user.platinumCount) {
+    //               this.loading = false;
+    //               this.platinums.sort((a, b) => (a.game.toUpperCase() < b.game.toUpperCase() ? -1 : 1));
+    //               this.applyFilters();
+    //             }
+    //           }, error => {
+    //             console.log("platpage" + ((i / 50) + 1), error);
+    //             this.adblockError = true;
+    //           }
+    //         );
+    //       }
+    //     }, error => {
+    //       console.log("profile", error);
+    //       if (error.status === 429) {
+    //         this.throttleError = true;
+    //         console.log("throttled");
+    //       }
+    //     }
+    //   );
   }
 
 }

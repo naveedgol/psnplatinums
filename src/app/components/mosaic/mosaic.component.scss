@@ -1,0 +1,126 @@
+.upperContainer {
+    // width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-image: linear-gradient( to right, #002a5c, #00397e,  #002a5c);
+    // padding: 20px 30px;
+    width: calc(100% - 40px);
+    padding: 20px;
+}
+
+.outerContainer {
+    font-family: SST Light;
+    flex-grow: 4;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.search-box {
+    color: white;
+    width: 100%;
+    // height: 80px;
+    font-size: 20px;
+}
+
+.options {
+    // width: 100%;
+    flex-grow: 1;
+    flex-basis: 30%;
+    height: fit-content;
+}
+
+.example-margin {
+    margin-right: 20px;
+}
+
+.slider {
+    width: 100%;
+}
+
+.example-section {
+    margin-bottom: 15px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+}
+
+.iconTypeLabel {
+    margin-bottom: 10px;
+}
+
+.section {
+    margin: 15px 0;
+    min-height: 80px;
+}
+
+.dateSection {
+    margin-bottom: 0;
+}
+
+.saveButton {
+    margin-top: 20px;
+}
+
+.mat-divider-horizontal {
+    position: static !important;
+}
+
+.totalPage {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.error {
+    font-size: 20px;
+    margin-top: 20px;
+    color: white;
+    color: red;
+}
+
+.radioGroup {
+    display: flex;
+    flex-direction: column;
+    // margin: 15px 0;
+}
+
+.radioButton {
+    margin: 5px !important;
+}
+
+
+.save-spinner {
+    display: inline;
+    margin-left: 10px;
+}
+
+.gameFilterTitle {
+    margin-bottom: 0;
+}
+
+.searchInputBox {
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.visibilityBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.settingsTitle {
+    margin-top: 15px;
+}
+
+.saveButtonDivider {
+    margin-top: 20px;
+}
