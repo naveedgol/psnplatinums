@@ -47,7 +47,7 @@ export class WrappedComponent {
     isSortAscending: false,
     displayUserInfo: false,
     displayTrophyCounts: false,
-    displayGameTitle: true,
+    displayGameTitle: false,
     displayTrophyTitle: false,
     displayRarity: false
   };
