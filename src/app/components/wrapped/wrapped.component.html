@@ -1,4 +1,4 @@
-<mat-card class="outer-container">
+<mat-card class="outer-container" id="capture">
     <mat-card-content>
         <div class="milestone-container">
             <div [style.marginRight.px]="10" class="text">
@@ -62,3 +62,6 @@
         </div>
     </mat-card-content>
 </mat-card>
+<button class="saveButton" mat-raised-button color="primary" (click)="save()">Save as
+    PNG</button>
+<mat-spinner *ngIf="isSaveLoading" class="save-spinner" [diameter]="30"></mat-spinner>

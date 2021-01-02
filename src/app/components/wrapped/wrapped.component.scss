@@ -4,7 +4,7 @@
 }
 
 .milestone-container {
-    animation: fadeIn ease 2s;
+    // animation: fadeIn ease 2s;
     color: white;
     display: flex;
     align-items: center;
@@ -53,4 +53,13 @@ mat-divider {
 
 .text {
     font-size: 20px;
+}
+
+.saveButton {
+    margin-top: 20px;
+}
+
+.save-spinner {
+    display: inline;
+    margin-left: 10px;
 }

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { PsnService } from 'src/app/services/psn.service';
 import { Trophy } from 'src/app/types/Trophy';
-import { interval } from 'rxjs';
 import { FilterService } from 'src/app/services/filter.service';
 import { DisplaySettings } from '../../types/DisplaySettings';
+import html2canvas from 'html2canvas';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-wrapped',
@@ -22,9 +23,7 @@ export class WrappedComponent {
   commonPlats = [];
   busyMonthPlats = [];
   yearPlats = [];
-  busyIdx = 0;
-
-  idx = 10;
+  isSaveLoading = false;
 
   displaySettings: DisplaySettings = {
     iconType: "TROPHY",
@@ -106,10 +105,25 @@ export class WrappedComponent {
     filterService.sort("rarity", "asc", this.yearPlats);
     this.calcRarity(this.yearPlats);
     this.platCount = this.yearPlats.length;
-
-    interval(1000).subscribe(x => {
-      this.busyIdx = (this.busyIdx + 1) % this.busyMonthPlats.length;
-    })
   }
 
+  save(): void {
+    this.isSaveLoading = true;
+    let element = document.querySelector("#capture");
+    from(html2canvas(element as HTMLElement, { useCORS: true, scrollX: 0, scrollY: -window.scrollY })).subscribe(
+      canvas => {
+        (canvas as HTMLCanvasElement).toBlob((blob) => {
+          // To download directly on browser default 'downloads' location
+          let link = document.createElement("a");
+          link.download = "image.png";
+          link.href = URL.createObjectURL(blob);
+          link.click();
+
+          // To save manually somewhere in file explorer
+          // window.saveAs(blob, 'image.png');
+        }, 'image/png');
+        this.isSaveLoading = false;
+      }
+    )
+  }
 }
