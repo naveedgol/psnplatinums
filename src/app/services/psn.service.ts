@@ -118,6 +118,10 @@ export class PsnService {
   }
 
   async fetchProfile(psn_id: string) {
+    if (this.user && psn_id == this.user.id) {
+      return;
+    }
+
     this.platinums = [];
 
     let profile = '';
