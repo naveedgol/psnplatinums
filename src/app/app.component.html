@@ -1,20 +1,24 @@
-<mat-card class="search-card">
-    <mat-card-content class="search-box">
-        <mat-form-field>
-            <input matInput #searchInput placeholder="Enter a PSN ID" autocomplete="off">
-        </mat-form-field>
-        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-        <div>Ensure your profile is updated on
-            <a target="_blank" href="https://psnprofiles.com/">PSNProfiles</a>.
-        </div>
-        <div class="error" *ngIf="error">
-            {{error}}
-        </div>
-        <button routerLink="/mosaic" class="action-button" mat-raised-button color="primary"
-            (click)="search(searchInput.value)">Mosaic</button>
-        <button routerLink="/wrapped" class="action-button" mat-raised-button color="primary"
-            (click)="search(searchInput.value)">2020 Wrapped</button>
-    </mat-card-content>
-</mat-card>
+<div class="outermost-div">
+    <mat-card class="search-card">
+        <mat-card-content class="search-box">
+            <mat-form-field>
+                <input matInput #searchInput placeholder="Enter a PSN ID" autocomplete="off">
+            </mat-form-field>
+            <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+            <div>Ensure your profile is updated on
+                <a target="_blank" href="https://psnprofiles.com/">PSNProfiles</a>.
+            </div>
+            <div class="error" *ngIf="error">
+                {{error}}
+            </div>
+            <button class="action-button" mat-raised-button color="primary"
+                (click)="mode = 'mosaic'; search(searchInput.value)">Mosaic</button>
+            <button class="action-button" mat-raised-button color="primary"
+                (click)="mode = 'wrapped'; search(searchInput.value)">2020
+                Wrapped</button>
+        </mat-card-content>
+    </mat-card>
 
-<router-outlet *ngIf="profileFetched"></router-outlet>
+    <app-mosaic *ngIf="profileFetched && mode=='mosaic'"></app-mosaic>
+    <app-wrapped *ngIf="profileFetched && mode=='wrapped'"></app-wrapped>
+</div>

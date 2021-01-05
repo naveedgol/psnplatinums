@@ -59,6 +59,9 @@
 .trophyImage {
     max-height: 80px;
     height: 5vw;
+    @media screen and (min-width: 800px) {
+        height: 40px;
+    }
     min-height: 30px;
     filter: drop-shadow(3px 3px 5px #222);
 }
@@ -80,6 +83,10 @@
 .trophyCountNum {
     font-size: calc(12px + 1.5vw);
     padding-left: 8px;
+
+    @media screen and (min-width: 800px) {
+        font-size: 25px;
+    }
 }
 
 .platinumIcon {

@@ -8,6 +8,7 @@ import { PsnService } from './services/psn.service';
 })
 export class AppComponent {
 
+    mode = '';
     loading = false;
     error = '';
     profileFetched = false;

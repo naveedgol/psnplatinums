@@ -4,14 +4,14 @@ import { MosaicComponent } from './components/mosaic/mosaic.component';
 import { WrappedComponent } from './components/wrapped/wrapped.component';
 
 const routes: Routes = [
-    {
-        path: 'mosaic',
-        component: MosaicComponent
-    },
-    {
-        path: 'wrapped',
-        component: WrappedComponent
-    },
+    // {
+    //     path: 'mosaic',
+    //     component: MosaicComponent
+    // },
+    // {
+    //     path: 'wrapped',
+    //     component: WrappedComponent
+    // },
 ];
 
 @NgModule({

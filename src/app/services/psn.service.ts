@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PsnService {
-  debug = false;
+  debug = true;
   dict = {};
   user: User;
   platinums: Trophy[] = [];
