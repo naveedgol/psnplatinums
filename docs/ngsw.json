@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1609893500660,
+  "timestamp": 1609894168851,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -136,7 +136,7 @@
     "/assets/images/silver.png": "c4d2d19ce2a16ea67e0d1a1e32b1b30eb002182d",
     "/assets/images/silver2.png": "415efe4ef431e8382ffd2cb3bb97e86917bdf0af",
     "/assets/images/silver3.png": "1709f423fbbea0ed19f701e5a73c8e150de2993d",
-    "/index.html": "3bb9d433a071925cc96e49f795a2a86e418137ea",
+    "/index.html": "54ed6b60ebc270dc291950f59d543b01dde90749",
     "/main.682e5635ee99a68be1f7.js": "3e7f2c9e16ea80509e05c01cb7cf4052faf7a3b4",
     "/manifest.webmanifest": "20ec63cb0e985f7e56d6408834c148bd9dee61dd",
     "/polyfills.35a5ca1855eb057f016a.js": "578360d24ce37383f261c7ef63b1f822d28e8dde",
