@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { retry } from 'rxjs/operators';
 import { User } from '../types/User';
-import { Trophy } from '../types/Trophy';
+import { Trophy, defaultList } from '../types/Trophy';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -12,8 +12,8 @@ import { environment } from '../../environments/environment';
 export class PsnService {
   debug = !environment.production;
   dict = {};
-  user: User;
-  platinums: Trophy[] = [];
+  user = new User();
+  platinums: Trophy[] = defaultList;
 
   constructor(private http: HttpClient) {
     this.http.get('./assets/data/images.json').subscribe(

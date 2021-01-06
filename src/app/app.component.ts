@@ -8,10 +8,10 @@ import { PsnService } from './services/psn.service';
 })
 export class AppComponent {
 
-    mode = '';
+    mode = 'mosaic';
     loading = false;
     error = '';
-    profileFetched = false;
+    profileFetched = true;
 
     constructor(public psnService: PsnService) { }
 
