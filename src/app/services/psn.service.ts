@@ -4,12 +4,13 @@ import { retry } from 'rxjs/operators';
 import { User } from '../types/User';
 import { Trophy } from '../types/Trophy';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PsnService {
-  debug = false;
+  debug = !environment.production;
   dict = {};
   user: User;
   platinums: Trophy[] = [];
@@ -148,46 +149,9 @@ export class PsnService {
           this.platinums = this.platinums.concat(this.parsePlats(data));
         })
         .catch(() => {
-          throw "An error occured. Try disable adblock.";
+          throw "An error occured.";
         });
     }
-
-    //   .subscribe(
-    //     data => {
-    //       this.user = this.psnService.parseUser(data, this.userId);
-    //       if (this.user === undefined) {
-    //         console.log("User does not exist.");
-    //         this.error = true;
-    //         this.loading = false;
-    //         return;
-    //       }
-    //       if (this.user.platinumCount === 0) {
-    //         this.loading = false;
-    //       }
-    //       for (var i = 0; i < this.user.platinumCount; i += 50) {
-    //         this.psnService.getPlatinums(this.userId, (i / 50) + 1).subscribe(
-    //           data => {
-    //             this.platinums = this.platinums.concat(this.psnService.parsePlats(data));
-    //             this.currentPlats = this.platinums;
-    //             if (this.platinums.length === this.user.platinumCount) {
-    //               this.loading = false;
-    //               this.platinums.sort((a, b) => (a.game.toUpperCase() < b.game.toUpperCase() ? -1 : 1));
-    //               this.applyFilters();
-    //             }
-    //           }, error => {
-    //             console.log("platpage" + ((i / 50) + 1), error);
-    //             this.adblockError = true;
-    //           }
-    //         );
-    //       }
-    //     }, error => {
-    //       console.log("profile", error);
-    //       if (error.status === 429) {
-    //         this.throttleError = true;
-    //         console.log("throttled");
-    //       }
-    //     }
-    //   );
   }
 
 }
