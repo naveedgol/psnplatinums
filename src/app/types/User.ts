@@ -1,5 +1,5 @@
 export class User {
-    id: string = "naveedgol";
+    id: string = "example user";
     bronzeCount: number = 2005;
     silverCount: number = 873;
     goldCount: number = 211;
