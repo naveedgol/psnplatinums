@@ -33,3 +33,7 @@ a {
     max-width: 540px;
     margin: 0 auto;
 }
+
+::ng-deep .mat-progress-bar .mat-progress-bar-buffer{
+    background-color: #ba9bbf !important;
+}
