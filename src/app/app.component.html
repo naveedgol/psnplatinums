@@ -4,7 +4,8 @@
             <mat-form-field>
                 <input matInput #searchInput placeholder="Enter a PSN ID (ex: jepot)" autocomplete="off">
             </mat-form-field>
-            <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+            <mat-progress-bar *ngIf="loading" mode="determinate"
+                [value]="loadingProgress.fetched/loadingProgress.total * 100"></mat-progress-bar>
             <div>Ensure your profile is updated on
                 <a target="_blank" href="https://psnprofiles.com/">PSNProfiles</a>.
             </div>

@@ -118,7 +118,7 @@ export class PsnService {
     return this.http.get("https://hvo2t8h0ck.execute-api.us-east-1.amazonaws.com/fetchPlatinums", options).pipe(retry(1));
   }
 
-  async fetchProfile(psn_id: string) {
+  async fetchProfile(psn_id: string, loadingProgress) {
     if (this.user && psn_id == this.user.id) {
       return;
     }
@@ -139,6 +139,7 @@ export class PsnService {
       });
 
     this.user = this.parseUser(profile, psn_id);
+    loadingProgress.total = this.user.platinumCount;
     if (this.user === undefined) {
       throw "User does not exist. Try adding your profile to PSNProfiles.";
     }
@@ -147,6 +148,7 @@ export class PsnService {
       await this.getPlatinums(psn_id, (i / 50) + 1).toPromise()
         .then(data => {
           this.platinums = this.platinums.concat(this.parsePlats(data));
+          loadingProgress.fetched = this.platinums.length;
         })
         .catch(() => {
           throw "An error occured.";
