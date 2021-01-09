@@ -34,7 +34,8 @@ export class MosaicComponent {
     displayTrophyCounts: true,
     displayGameTitle: false,
     displayTrophyTitle: false,
-    displayRarity: false
+    displayRarity: false,
+    displayWatermark: true
   };
 
   constructor(public psnService: PsnService,

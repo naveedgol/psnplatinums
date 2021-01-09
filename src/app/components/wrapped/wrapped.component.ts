@@ -35,7 +35,8 @@ export class WrappedComponent {
     displayTrophyCounts: false,
     displayGameTitle: true,
     displayTrophyTitle: false,
-    displayRarity: true
+    displayRarity: true,
+    displayWatermark: false
   };
 
   yearDS: DisplaySettings = {
@@ -48,7 +49,8 @@ export class WrappedComponent {
     displayTrophyCounts: false,
     displayGameTitle: false,
     displayTrophyTitle: false,
-    displayRarity: false
+    displayRarity: false,
+    displayWatermark: false
   };
 
   calcBusyMonth(plats: Trophy[]) {
