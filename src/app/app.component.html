@@ -7,7 +7,7 @@
             <mat-progress-bar *ngIf="loading" mode="determinate"
                 [value]="loadingProgress.fetched/loadingProgress.total * 100"></mat-progress-bar>
             <div>Ensure your profile is updated on
-                <a target="_blank" href="https://psnprofiles.com/">PSNProfiles</a>.
+                <a target="_blank" rel="noopener" href="https://psnprofiles.com/">PSNProfiles</a>.
             </div>
             <div class="error" *ngIf="error">
                 {{error}}
