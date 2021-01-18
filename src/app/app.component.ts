@@ -21,6 +21,7 @@ export class AppComponent {
             this.error = 'Enter a valid PSN name';
             return;
         }
+        this.loadingProgress = { fetched: 0, total: 1 };
         this.error = '';
         this.loading = true;
         this.profileFetched = false;
