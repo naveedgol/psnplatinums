@@ -6,103 +6,41 @@
     font-style: normal;
     font-weight: normal;
     src: local('SST Roman'), url('./assets/fonts/SSTRg.woff') format('woff');
-    }
-    
-    
-    @font-face {
-    font-family: 'SST Condensed';
-    font-style: normal;
-    font-weight: normal;
-    src: local('SST Condensed'), url('./assets/fonts/SSTRgCn.woff') format('woff');
-    }
-    
-    
-    @font-face {
-    font-family: 'SST Italic';
-    font-style: normal;
-    font-weight: normal;
-    src: local('SST Italic'), url('./assets/fonts/SSTRgIt.woff') format('woff');
-    }
-    
-    
-    @font-face {
+    font-display: swap;
+}
+
+@font-face {
     font-family: 'SST Light';
     font-style: normal;
     font-weight: normal;
     src: local('SST Light'), url('./assets/fonts/SSTLight.woff') format('woff');
-    }
-    
-    
-    @font-face {
-    font-family: 'SST Light Italic';
-    font-style: normal;
-    font-weight: normal;
-    src: local('SST Light Italic'), url('./assets/fonts/SSTLightIt.woff') format('woff');
-    }
-    
-    
-    @font-face {
+    font-display: swap;
+}
+
+@font-face {
     font-family: 'SST Medium';
     font-style: normal;
     font-weight: normal;
     src: local('SST Medium'), url('./assets/fonts/SSTMedium.woff') format('woff');
-    }
-    
-    
-    @font-face {
-    font-family: 'SST Condensed Medium';
-    font-style: normal;
-    font-weight: normal;
-    src: local('SST Condensed Medium'), url('./assets/fonts/SSTMediumCn.woff') format('woff');
-    }
-    
-    
-    @font-face {
-    font-family: 'SST Medium Italic';
-    font-style: normal;
-    font-weight: normal;
-    src: local('SST Medium Italic'), url('./assets/fonts/SSTMediumIt.woff') format('woff');
-    }
-    
-    
-    @font-face {
+    font-display: swap;
+}
+
+@font-face {
     font-family: 'SST Bold';
     font-style: normal;
     font-weight: normal;
     src: local('SST Bold'), url('./assets/fonts/SSTBold.woff') format('woff');
-    }
-    
-    
-    @font-face {
-    font-family: 'SST Condensed Bold';
-    font-style: normal;
-    font-weight: normal;
-    src: local('SST Condensed Bold'), url('./assets/fonts/SSTBoldCn.woff') format('woff');
-    }
-    
-    
-    @font-face {
-    font-family: 'SST Bold Italic';
-    font-style: normal;
-    font-weight: normal;
-    src: local('SST Bold Italic'), url('./assets/fonts/SSTBoldIt.woff') format('woff');
-    }
-    
-    
-    @font-face {
+    font-display: swap;
+}
+
+@font-face {
     font-family: 'SST Heavy';
     font-style: normal;
     font-weight: normal;
     src: local('SST Heavy'), url('./assets/fonts/SSTHeavy.woff') format('woff');
-    }
+    font-display: swap;
+}
     
-    
-    @font-face {
-    font-family: 'SST Heavy Italic';
-    font-style: normal;
-    font-weight: normal;
-    src: local('SST Heavy Italic'), url('./assets/fonts/SSTHeavyIt.woff') format('woff');
-    }
 
 body {
     margin: 0;
