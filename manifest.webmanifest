@@ -1,6 +1,6 @@
 {
-  "name": "psn-trophy-case",
-  "short_name": "psn-trophy-case",
+  "name": "PSN Platinums",
+  "short_name": "PSN Plats",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
