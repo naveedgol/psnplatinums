@@ -65,6 +65,7 @@
                 <div *ngIf="displaySettings.displayGameTitle" class="title">{{plat.game}}</div>
                 <div *ngIf="displaySettings.displayTrophyTitle" class="title">{{plat.name}}</div>
                 <div *ngIf="displaySettings.displayRarity">{{plat.rarity}}%</div>
+                <div *ngIf="displaySettings.displayDateUnlocked">{{plat.date | date: mediumDate}}</div>
             </div>
         </div>
         <div *ngIf="displaySettings.displayWatermark" class="watermark">PSNplatinums.com</div>

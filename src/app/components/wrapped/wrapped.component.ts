@@ -36,6 +36,7 @@ export class WrappedComponent {
     displayGameTitle: true,
     displayTrophyTitle: false,
     displayRarity: true,
+    displayDateUnlocked: false,
     displayWatermark: false,
     color: "BLUE"
   };
@@ -51,6 +52,7 @@ export class WrappedComponent {
     displayGameTitle: false,
     displayTrophyTitle: false,
     displayRarity: false,
+    displayDateUnlocked: false,
     displayWatermark: false,
     color: "BLUE"
   };

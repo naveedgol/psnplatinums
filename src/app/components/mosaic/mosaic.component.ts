@@ -35,6 +35,7 @@ export class MosaicComponent {
     displayGameTitle: false,
     displayTrophyTitle: false,
     displayRarity: false,
+    displayDateUnlocked: false,
     displayWatermark: true,
     color: "BLUE"
   };

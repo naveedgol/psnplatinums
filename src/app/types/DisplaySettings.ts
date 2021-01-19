@@ -9,6 +9,7 @@ export class DisplaySettings {
     displayGameTitle: boolean;
     displayTrophyTitle: boolean;
     displayRarity: boolean;
+    displayDateUnlocked: boolean;
     displayWatermark: boolean;
     color: string;
 }
