@@ -64,10 +64,18 @@
                   [(ngModel)]="displaySettings.rowSpacingPx">
                 </mat-slider>
               </section>
+            </mat-expansion-panel>
 
-              <mat-divider></mat-divider>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Visibility
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+
               <section class="section visibilityBox">
-                <h2>Visibility</h2>
                 <mat-checkbox class="example-margin" [(ngModel)]="displaySettings.displayUserInfo">User Info
                 </mat-checkbox>
                 <mat-checkbox class="example-margin" [(ngModel)]="displaySettings.displayTrophyCounts"
