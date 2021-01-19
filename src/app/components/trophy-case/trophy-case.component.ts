@@ -107,9 +107,12 @@ export class TrophyCaseComponent {
   }
 
   public share() {
+    const win = window.open("", "_blank");
+    win.document.body.innerHTML = "Redirecting to Reddit... Please wait.";
+
     this.shareImpl().then(redditLink => {
       // window open can't be within async or it is deemed popup by safari
-      window.open(redditLink, "_blank");
+      win.location.href = redditLink;
     });
   }
 
@@ -120,7 +123,7 @@ export class TrophyCaseComponent {
     // leverage html2canvas to convert from dom to canvas to blob
     const element: HTMLElement = document.querySelector("#capture");
     const canvas: HTMLCanvasElement = await html2canvas(element, { useCORS: true, scrollX: 0, scrollY: -window.scrollY })
-    const blob: Blob = await new Promise(resolve => canvas.toBlob(resolve));
+    const blob: Blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
 
     // prep imgur POST request to upload blob
     var data = new FormData();
@@ -136,7 +139,7 @@ export class TrophyCaseComponent {
 
     // open reddit post link to open in new tab
     const imgurLink = imgurResponse["data"]["link"];
-    const redditLink = "http://www.reddit.com/submit?url=" + imgurLink + "&title=%5BMultiple+Games%5D+My+Platinum+mosaic+built+with+PSNplatinums.com";
+    const redditLink = "http://www.reddit.com/r/Trophies/submit?url=" + imgurLink + "&title=%5BMultiple+Games%5D+My+Platinum+mosaic+built+with+PSNplatinums.com";
 
     this.uponIsSaveLoading.emit(false);
 
