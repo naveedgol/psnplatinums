@@ -10,4 +10,5 @@ export class DisplaySettings {
     displayTrophyTitle: boolean;
     displayRarity: boolean;
     displayWatermark: boolean;
+    color: string;
 }

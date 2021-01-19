@@ -58,6 +58,34 @@ export class TrophyCaseComponent {
       + 'px, 1fr) )';
   }
 
+  getUpperColor(): string {
+    if (this.displaySettings.color == "BLUE") {
+      return "linear-gradient(to right, rgb(0, 42, 92), rgb(0, 57, 126), rgb(0, 42, 92))";
+    }
+    if (this.displaySettings.color == "GREEN") {
+      return "linear-gradient(to right, rgb(0, 150, 92), rgb(0, 200, 126), rgb(0, 150, 92))";
+    }
+    if (this.displaySettings.color == "RED") {
+      return "linear-gradient(to right, rgb(100, 0, 0), rgb(175, 0, 0), rgb(125, 0, 0))";
+    }
+
+    return "linear-gradient( to right, #002a5c, #00397e,  #002a5c)";
+  }
+
+  getLowerColor(): string {
+    if (this.displaySettings.color == "BLUE") {
+      return "linear-gradient(rgb(7, 34, 80), rgb(5, 31, 74))";
+    }
+    if (this.displaySettings.color == "GREEN") {
+      return "linear-gradient(rgb(7, 150, 80), rgb(5, 200, 74))";
+    }
+    if (this.displaySettings.color == "RED") {
+      return "linear-gradient(rgb(200, 0, 0), rgb(150, 0, 0))";
+    }
+
+    return "linear-gradient(#072250, #051f4a)";
+  }
+
   public save(): void {
     this.uponIsSaveLoading.emit(true);
     let element = document.querySelector("#capture");

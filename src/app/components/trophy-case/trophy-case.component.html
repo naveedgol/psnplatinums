@@ -1,5 +1,6 @@
 <div id="capture">
-    <div class="upperContainer" *ngIf="user && displaySettings.displayUserInfo">
+    <div class="upperContainer" *ngIf="user && displaySettings.displayUserInfo"
+        [style.background-image]="getUpperColor()">
         <div class="userInfo">
             <div class="userIdContainer">
                 <img class="avatar" [src]="user.avatar" alt="avatar">
@@ -42,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div class="lowerContainer" *ngIf="user && platinums.length">
+    <div class="lowerContainer" *ngIf="user && platinums.length" [style.background-image]="getLowerColor()">
         <div class="cabinetContainer" *ngIf="cabinet && cabinet.length">
             <div class="platIconContainer cabinetPlatIconContainer" *ngFor="let plat of cabinet"
                 [style.marginTop.px]="displaySettings.rowSpacingPx"

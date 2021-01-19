@@ -35,7 +35,8 @@ export class MosaicComponent {
     displayGameTitle: false,
     displayTrophyTitle: false,
     displayRarity: false,
-    displayWatermark: true
+    displayWatermark: true,
+    color: "BLUE"
   };
 
   constructor(public psnService: PsnService,

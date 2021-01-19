@@ -9,6 +9,25 @@
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                 <mat-panel-title>
+                  Theme
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <section class="section">
+                <h2>Color</h2>
+                <mat-radio-group class="radioGroup" aria-label="Color" [(ngModel)]="displaySettings.color">
+                  <mat-radio-button class="radioButton" value="BLUE">Blue</mat-radio-button>
+                  <mat-radio-button class="radioButton" value="GREEN">Green</mat-radio-button>
+                  <mat-radio-button class="radioButton" value="RED">Red</mat-radio-button>
+                </mat-radio-group>
+              </section>
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
                   Visuals
                 </mat-panel-title>
                 <mat-panel-description>
