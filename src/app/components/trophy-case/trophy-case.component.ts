@@ -68,6 +68,12 @@ export class TrophyCaseComponent {
     if (this.displaySettings.color == "RED") {
       return "linear-gradient(to right, rgb(100, 0, 0), rgb(175, 0, 0), rgb(125, 0, 0))";
     }
+    if (this.displaySettings.color == "PINK") {
+      return "linear-gradient(to right, rgb(92 0 89), rgb(95 0 126), rgb(187 8 170))";
+    }
+    if (this.displaySettings.color == "ORANGE") {
+      return "linear-gradient(to right, rgb(99 70 4), rgb(224 120 14), rgb(128 62 9))";
+    }
 
     return "linear-gradient( to right, #002a5c, #00397e,  #002a5c)";
   }
@@ -81,6 +87,12 @@ export class TrophyCaseComponent {
     }
     if (this.displaySettings.color == "RED") {
       return "linear-gradient(rgb(200, 0, 0), rgb(150, 0, 0))";
+    }
+    if (this.displaySettings.color == "PINK") {
+      return "linear-gradient(rgb(72 7 80), rgb(115 21 112))";
+    }
+    if (this.displaySettings.color == "ORANGE") {
+      return "linear-gradient(rgb(125 68 9), rgb(251 162 0))";
     }
 
     return "linear-gradient(#072250, #051f4a)";
