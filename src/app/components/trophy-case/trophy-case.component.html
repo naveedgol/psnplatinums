@@ -60,8 +60,7 @@
                 [style.marginTop.px]="displaySettings.rowSpacingPx"
                 [style.marginBottom.px]="displaySettings.rowSpacingPx">
                 <img [src]="displaySettings.iconType === 'GAME' ? plat.gameIcon : plat.icon" class="platinumIcon"
-                    [style.width.px]="displaySettings.iconWidthPx" [style.height.px]="displaySettings.iconWidthPx"
-                    [title]="plat.game" alt="{{plat.game}}">
+                    [style.width.px]="displaySettings.iconWidthPx" [title]="plat.game" alt="{{plat.game}}">
                 <div *ngIf="displaySettings.displayGameTitle" class="title">{{plat.game}}</div>
                 <div *ngIf="displaySettings.displayTrophyTitle" class="title">{{plat.name}}</div>
                 <div *ngIf="displaySettings.displayRarity">{{plat.rarity}}%</div>
