@@ -78,7 +78,7 @@ export class WrappedComponent {
       }
     }
 
-    const months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Decemeber"];
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Decemeber"];
     if (maxMonthIdx != -1) {
       this.busiestMonth = months[maxMonthIdx];
       this.busiestMonthCount = arr[maxMonthIdx];
