@@ -1,6 +1,7 @@
 export class DisplaySettings {
     iconType: string;
     iconWidthPx: number;
+    width: number;
     columnSpacingPx: number;
     rowSpacingPx: number;
     isSortAscending: boolean;

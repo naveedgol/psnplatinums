@@ -1,4 +1,4 @@
-<div id="capture">
+<div id="capture" [style.width]="'calc(100% + ' + displaySettings.width+'px)'">
     <div class="upperContainer" *ngIf="user && displaySettings.displayUserInfo"
         [style.background-image]="getUpperColor()">
         <div class="userInfo">

@@ -28,6 +28,7 @@ export class WrappedComponent {
   displaySettings: DisplaySettings = {
     iconType: "TROPHY",
     iconWidthPx: 70,
+    width: 0,
     columnSpacingPx: 15,
     rowSpacingPx: 8,
     isSortAscending: false,
@@ -44,6 +45,7 @@ export class WrappedComponent {
   yearDS: DisplaySettings = {
     iconType: "TROPHY",
     iconWidthPx: 70,
+    width: 0,
     columnSpacingPx: 15,
     rowSpacingPx: 8,
     isSortAscending: false,

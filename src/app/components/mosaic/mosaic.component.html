@@ -53,6 +53,13 @@
 
               <mat-divider></mat-divider>
               <section class="section">
+                <h2>Mosaic Width Adjuster</h2>
+                <mat-slider class="slider" thumbLabel min="-200" max="200" step="1" [(ngModel)]="displaySettings.width">
+                </mat-slider>
+              </section>
+
+              <mat-divider></mat-divider>
+              <section class="section">
                 <h2>Column Spacing</h2>
                 <mat-slider class="slider" thumbLabel min="0" max="100" step="1"
                   [(ngModel)]="displaySettings.columnSpacingPx">

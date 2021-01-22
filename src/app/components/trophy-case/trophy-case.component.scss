@@ -1,7 +1,10 @@
 :host {
-    flex-grow: 4;
+    width: 100%;
     font-family: SST Light;
-    max-width: 100%;
+    max-width: 800px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .upperContainer {

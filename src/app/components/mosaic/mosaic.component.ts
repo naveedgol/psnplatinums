@@ -27,6 +27,7 @@ export class MosaicComponent {
   displaySettings: DisplaySettings = {
     iconType: "TROPHY",
     iconWidthPx: 56,
+    width: 0,
     columnSpacingPx: 6,
     rowSpacingPx: 4,
     isSortAscending: false,
