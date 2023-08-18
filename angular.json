@@ -135,5 +135,8 @@
       }
     }
   },
-  "defaultProject": "psn-trophy-case"
+  "defaultProject": "psn-trophy-case",
+  "cli": {
+    "analytics": false
+  }
 }
