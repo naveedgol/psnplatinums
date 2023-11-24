@@ -23,8 +23,6 @@ export class PsnService {
     )
   }
 
-  psnUrl = 'https://cors-anywhere.herokuapp.com/https://psnprofiles.com/';
-
   getProfile(psn_id): Observable<any> {
     const options = {
       responseType: 'text' as const,
@@ -52,7 +50,7 @@ export class PsnService {
     user.silverCount = this.parseCount(doc, "silver");
     user.goldCount = this.parseCount(doc, "gold");
     user.platinumCount = this.parseCount(doc, "platinum");
-    user.level = parseInt((doc.querySelectorAll("li.icon-sprite.level")[0] as HTMLElement).innerText);
+    user.level = parseInt((doc.querySelectorAll("div.progress-bar.level")[0].previousSibling.previousSibling as HTMLElement).innerText);
     user.avatar = doc.getElementsByTagName('meta')[8].content;
     var levelProgress = doc.querySelector("div.progress-bar").childNodes[1].textContent.substring(6, 8);
     if (levelProgress[1] === '%') {
