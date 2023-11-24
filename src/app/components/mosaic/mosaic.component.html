@@ -46,31 +46,32 @@
               <mat-divider></mat-divider>
               <section class="section">
                 <h2>Icon Size</h2>
-                <mat-slider class="slider" thumbLabel min="10" max="200" step="1" value="56"
-                  [(ngModel)]="displaySettings.iconWidthPx">
+                <mat-slider class="slider" thumbLabel min="10" max="200" step="1" value="56" discrete>
+                  <input [(ngModel)]="displaySettings.iconWidthPx" matSliderThumb>
                 </mat-slider>
               </section>
 
               <mat-divider></mat-divider>
               <section class="section">
                 <h2>Mosaic Width Adjuster</h2>
-                <mat-slider class="slider" thumbLabel min="-200" max="200" step="1" [(ngModel)]="displaySettings.width">
+                <mat-slider class="slider" thumbLabel min="-200" max="200" step="1" discrete>
+                  <input [(ngModel)]="displaySettings.width" matSliderThumb>
                 </mat-slider>
               </section>
 
               <mat-divider></mat-divider>
               <section class="section">
                 <h2>Column Spacing</h2>
-                <mat-slider class="slider" thumbLabel min="0" max="100" step="1"
-                  [(ngModel)]="displaySettings.columnSpacingPx">
+                <mat-slider class="slider" thumbLabel min="0" max="100" step="1" discrete>
+                  <input [(ngModel)]="displaySettings.columnSpacingPx" matSliderThumb>
                 </mat-slider>
               </section>
 
               <mat-divider></mat-divider>
               <section class="section">
                 <h2>Row Spacing</h2>
-                <mat-slider class="slider" thumbLabel min="0" max="100" step="1"
-                  [(ngModel)]="displaySettings.rowSpacingPx">
+                <mat-slider class="slider" thumbLabel min="0" max="100" step="1" discrete>
+                  <input [(ngModel)]="displaySettings.rowSpacingPx" matSliderThumb>
                 </mat-slider>
               </section>
             </mat-expansion-panel>

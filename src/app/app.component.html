@@ -6,22 +6,20 @@
             </mat-form-field>
             <mat-progress-bar *ngIf="loading" mode="{{loadingProgress.fetched ? 'determinate' : 'indeterminate'}}"
                 [value]="loadingProgress.fetched/loadingProgress.total * 100"></mat-progress-bar>
-            <div>Ensure your profile is updated on
+            <mat-card-subtitle>Ensure your profile is updated on
                 <a target="_blank" rel="noopener" href="https://psnprofiles.com/">PSNProfiles</a>.
-            </div>
+            </mat-card-subtitle>
             <div class="error" *ngIf="error">
                 {{error}}
             </div>
             <button class="action-button" mat-raised-button color="primary"
                 (click)="mode = 'mosaic'; search(searchInput.value)">Mosaic</button>
-            <button class="action-button" mat-raised-button color="primary"
+            <!-- <button class="action-button" mat-raised-button color="primary"
                 (click)="mode = 'wrapped'; search(searchInput.value)">2020
-                Wrapped</button>
-            <a mat-raised-button color="accent" href="https://www.buymeacoffee.com/naveedgol"
-                target="_blank">Donate!</a>
+                Wrapped</button> -->
         </mat-card-content>
     </mat-card>
 
     <app-mosaic *ngIf="profileFetched && mode=='mosaic'"></app-mosaic>
-    <app-wrapped *ngIf="profileFetched && mode=='wrapped'"></app-wrapped>
+    <!-- <app-wrapped *ngIf="profileFetched && mode=='wrapped'"></app-wrapped> -->
 </div>
