@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1617561598788,
+  "timestamp": 1700938283268,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -12,11 +12,11 @@
       },
       "urls": [
         "/index.html",
-        "/main.4cd673c79c48c1a2f043.js",
+        "/main.25afddb7c240c473.js",
         "/manifest.webmanifest",
-        "/polyfills.35a5ca1855eb057f016a.js",
-        "/runtime.acf0dec4155e77772545.js",
-        "/styles.501629742d190d1ede81.css"
+        "/polyfills.7086ef7eb1ffcca2.js",
+        "/runtime.3da47f1859732a38.js",
+        "/styles.1e8922bc2124e7a5.css"
       ],
       "patterns": []
     },
@@ -28,11 +28,11 @@
         "ignoreVary": true
       },
       "urls": [
-        "/SSTBold.9d7266c7b2456bbddc55.woff",
-        "/SSTHeavy.8870c8117f78e4302d62.woff",
-        "/SSTLight.21abb817ebb7cd0e7478.woff",
-        "/SSTMedium.798ac68b76f1c4eaedfd.woff",
-        "/SSTRg.880b5a2d97e85ac0d0d1.woff",
+        "/SSTBold.283c19a29eacd115.woff",
+        "/SSTHeavy.98eeccabe0b5e646.woff",
+        "/SSTLight.69f06b3872d622a2.woff",
+        "/SSTMedium.c7e58ff6f2dd3cb0.woff",
+        "/SSTRg.201a18c5d30e7a34.woff",
         "/assets/data/images.json",
         "/assets/data/platpage1.html",
         "/assets/data/platpage2.html",
@@ -77,16 +77,16 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/SSTBold.9d7266c7b2456bbddc55.woff": "89642197037b216296006640d8509a2e2bd364e6",
-    "/SSTHeavy.8870c8117f78e4302d62.woff": "a77c099ed1efa1b639e46c8cbf5bc32924e66b92",
-    "/SSTLight.21abb817ebb7cd0e7478.woff": "c226544a26b3f76ec0c42863ff3039aaaa6a5e7c",
-    "/SSTMedium.798ac68b76f1c4eaedfd.woff": "2a1e4bf2ceae8e48073f27b4abab089993909077",
-    "/SSTRg.880b5a2d97e85ac0d0d1.woff": "7fa2f7338a2443d93c0e9710d0ac98d5adcf30c2",
+    "/SSTBold.283c19a29eacd115.woff": "89642197037b216296006640d8509a2e2bd364e6",
+    "/SSTHeavy.98eeccabe0b5e646.woff": "a77c099ed1efa1b639e46c8cbf5bc32924e66b92",
+    "/SSTLight.69f06b3872d622a2.woff": "c226544a26b3f76ec0c42863ff3039aaaa6a5e7c",
+    "/SSTMedium.c7e58ff6f2dd3cb0.woff": "2a1e4bf2ceae8e48073f27b4abab089993909077",
+    "/SSTRg.201a18c5d30e7a34.woff": "7fa2f7338a2443d93c0e9710d0ac98d5adcf30c2",
     "/assets/data/images.json": "87760b2dce221c3794e43e962fa9b7a165a1a078",
     "/assets/data/platpage1.html": "49dfb4246cc5d9a36963de5e41772c0206b98cca",
     "/assets/data/platpage2.html": "33f3805db1827fc2b0973fb9b7bf06102a724055",
     "/assets/data/platpage3.html": "241963280738e2d49cfc55331e7b804b92c71cda",
-    "/assets/data/profile.html": "0146bd3b6fd147362e311fc7ef4ff07e49322848",
+    "/assets/data/profile.html": "9619ad0996a35a9dda8cc3f0e5907bdb30f21688",
     "/assets/fonts/SSTBold.woff": "89642197037b216296006640d8509a2e2bd364e6",
     "/assets/fonts/SSTHeavy.woff": "a77c099ed1efa1b639e46c8cbf5bc32924e66b92",
     "/assets/fonts/SSTLight.woff": "c226544a26b3f76ec0c42863ff3039aaaa6a5e7c",
@@ -120,12 +120,12 @@
     "/assets/images/silver.png": "c4d2d19ce2a16ea67e0d1a1e32b1b30eb002182d",
     "/assets/images/silver2.png": "415efe4ef431e8382ffd2cb3bb97e86917bdf0af",
     "/assets/images/silver3.png": "1709f423fbbea0ed19f701e5a73c8e150de2993d",
-    "/index.html": "941423f9ece0af434b776fbe703eb669e2b6f9b3",
-    "/main.4cd673c79c48c1a2f043.js": "7c07f1e43b73c7f56540bf933ecaea93dfdd8d5e",
+    "/index.html": "a2babf184fe69c2b9494ae37d43c24d7c7fc3cd4",
+    "/main.25afddb7c240c473.js": "9f37891e4fa880765fe39519b878eca38418b71b",
     "/manifest.webmanifest": "f96a3d0666320888ae327d65fc3481a0b068a641",
-    "/polyfills.35a5ca1855eb057f016a.js": "578360d24ce37383f261c7ef63b1f822d28e8dde",
-    "/runtime.acf0dec4155e77772545.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
-    "/styles.501629742d190d1ede81.css": "d85d3d561b2627ba5dc4aa92be16763aed7b7882"
+    "/polyfills.7086ef7eb1ffcca2.js": "2dda9aea266c56d34eba187746c007d5c23318c4",
+    "/runtime.3da47f1859732a38.js": "49742beb85ccb478562164bf66b4604aec94c8e5",
+    "/styles.1e8922bc2124e7a5.css": "04e4fe6de3e0508e9b7e86f130865fe6447f4466"
   },
   "navigationUrls": [
     {
@@ -144,5 +144,6 @@
       "positive": false,
       "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
     }
-  ]
+  ],
+  "navigationRequestStrategy": "performance"
 }
