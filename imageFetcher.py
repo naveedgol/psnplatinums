@@ -43,7 +43,7 @@ def writeLinksToFile():
         image_links = json.load(file)
 
     for platform in PLATFORMS:
-        for page in range(1, 10):
+        for page in range(1, 50):
             print(f"Fetching {platform}, page {page}...")
             if fetchImageLinks(image_links, page, platform) == -1:
                 print(f"ERROR: {platform} failed on page {1}")
