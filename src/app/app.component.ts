@@ -17,9 +17,7 @@ export class AppComponent {
     constructor(public psnService: PsnService) { }
 
     search(val: string): void {
-        console.log(val);
         val = val.replace(/\s/g, "");
-        console.log(val);
         if (val.length === 0) {
             this.error = 'Enter a valid PSN name';
             return;
