@@ -3,8 +3,8 @@ import json
 from bs4 import BeautifulSoup
 
 PSN_PROFILES_URL = "https://psnprofiles.com/trophies"
-PLATFORMS = ["ps3", "ps4", "ps5", "psvita"]
-
+PLATFORMS = ["ps4", "ps5"]
+JSON_FILE_PATH = "src/assets/data/images.json"
 
 def getIconLinks(soup, icon_class):
     picture_tags = soup.find_all("picture", {"class": icon_class})
@@ -39,8 +39,11 @@ def fetchImageLinks(links, page, platform):
 
 def writeLinksToFile():
     image_links = {}
+    with open(JSON_FILE_PATH, 'r') as file:
+        image_links = json.load(file)
+
     for platform in PLATFORMS:
-        for page in range(1, 50):
+        for page in range(1, 5):
             print(f"Fetching {platform}, page {page}...")
             if fetchImageLinks(image_links, page, platform) == -1:
                 print(f"ERROR: {platform} failed on page {1}")
