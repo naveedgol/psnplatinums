@@ -3,7 +3,11 @@ import json
 from bs4 import BeautifulSoup
 
 PSN_PROFILES_URL = "https://psnprofiles.com/trophies"
+<<<<<<< HEAD
 PLATFORMS = ["ps3", "ps4", "ps5", "psvita"]
+=======
+PLATFORMS = ["ps4", "ps5"]
+>>>>>>> ec3245b (update HQ images)
 JSON_FILE_PATH = "src/assets/data/images.json"
 
 def getIconLinks(soup, icon_class):
