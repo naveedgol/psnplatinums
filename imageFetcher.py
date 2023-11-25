@@ -3,7 +3,7 @@ import json
 from bs4 import BeautifulSoup
 
 PSN_PROFILES_URL = "https://psnprofiles.com/trophies"
-PLATFORMS = ["ps4", "ps5"]
+PLATFORMS = ["ps3", "ps4", "ps5", "psvita"]
 JSON_FILE_PATH = "src/assets/data/images.json"
 
 def getIconLinks(soup, icon_class):
@@ -50,7 +50,7 @@ def writeLinksToFile():
                 return
 
     with open("src/assets/data/images.json", "w") as file:
-        file.write(json.dumps(image_links))
+        file.write(json.dumps(image_links, sort_keys=True))
 
 
 writeLinksToFile()
