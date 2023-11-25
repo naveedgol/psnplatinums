@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { PsnService } from '../../services/psn.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { User } from '../../types/User';
 import { DisplaySettings } from '../../types/DisplaySettings';
 import { Trophy } from '../../types/Trophy';
@@ -18,9 +18,9 @@ export class MosaicComponent {
   isSaveLoading = false;
   sortOrder = 'date';
   sortDirection = 'des';
-  range = new FormGroup({
-    start: new FormControl(new Date('January 1, 2007')),
-    end: new FormControl(new Date())
+  range = new UntypedFormGroup({
+    start: new UntypedFormControl(new Date('January 1, 2007')),
+    end: new UntypedFormControl(new Date())
   });
   gameFilterQuery = '';
 
@@ -58,6 +58,6 @@ export class MosaicComponent {
     this.isSaveLoading = stateChange;
   }
 
-  cabinetForm = new FormControl();
+  cabinetForm = new UntypedFormControl();
 }
 
