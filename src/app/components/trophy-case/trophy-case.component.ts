@@ -102,11 +102,13 @@ export class TrophyCaseComponent {
   public save(): void {
     this.uponIsSaveLoading.emit(true);
     const element: HTMLElement = document.querySelector('#capture');
-    from(htmlToImage.toPng(element)).subscribe(dataUrl => {
-      const link = document.createElement('a');
-      link.download = 'image.png';
-      link.href = dataUrl;
-      link.click();
+    from(htmlToImage.toPng(element)).subscribe(() => {
+      from(htmlToImage.toPng(element)).subscribe(dataUrl => {
+        const link = document.createElement('a');
+        link.download = 'image.png';
+        link.href = dataUrl;
+        link.click();
+      });
     });
   }
 
