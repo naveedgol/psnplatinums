@@ -2,20 +2,17 @@ import { Injectable } from '@angular/core';
 import { Trophy } from '../types/Trophy';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FilterService {
-
-  constructor() { }
+  constructor() {}
 
   sort(sortOrder, sortDirection, plats): void {
-    if (sortOrder === "date") {
+    if (sortOrder === 'date') {
       plats.sort((a, b) => (a.num > b.num ? -1 : 1));
-    }
-    else if (sortOrder === "rarity") {
+    } else if (sortOrder === 'rarity') {
       plats.sort((a, b) => (a.rarity > b.rarity ? -1 : 1));
-    }
-    else if (sortOrder === "alpha") {
+    } else if (sortOrder === 'alpha') {
       plats.sort((a, b) => (a.game.toUpperCase() < b.game.toUpperCase() ? -1 : 1));
     }
 
@@ -45,5 +42,4 @@ export class FilterService {
       return !val.includes(p);
     });
   }
-
 }
