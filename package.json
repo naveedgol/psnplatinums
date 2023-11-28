@@ -23,7 +23,7 @@
     "@angular/router": "^17.0.4",
     "@angular/service-worker": "^17.0.4",
     "angular-cli-ghpages": "^1.0.0-rc.1",
-    "html2canvas": "^1.0.0-alpha.12",
+    "html-to-image": "^1.11.11",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.14.2"

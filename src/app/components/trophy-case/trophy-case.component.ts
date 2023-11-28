@@ -2,9 +2,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../../types/User';
 import { Trophy } from '../../types/Trophy';
 import { DisplaySettings } from '../../types/DisplaySettings';
-import html2canvas from 'html2canvas';
 import { from } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import * as htmlToImage from 'html-to-image';
 
 @Component({
   selector: 'app-trophy-case',
@@ -101,25 +101,12 @@ export class TrophyCaseComponent {
 
   public save(): void {
     this.uponIsSaveLoading.emit(true);
-    const element = document.querySelector('#capture');
-    from(
-      html2canvas(element as HTMLElement, {
-        useCORS: true,
-        scrollX: 0,
-        scrollY: -window.scrollY,
-      })
-    ).subscribe(canvas => {
-      (canvas as HTMLCanvasElement).toBlob(blob => {
-        // To download directly on browser default 'downloads' location
-        const link = document.createElement('a');
-        link.download = 'image.png';
-        link.href = URL.createObjectURL(blob);
-        link.click();
-
-        // To save manually somewhere in file explorer
-        // window.saveAs(blob, 'image.png');
-      }, 'image/png');
-      this.uponIsSaveLoading.emit(false);
+    const element: HTMLElement = document.querySelector('#capture');
+    from(htmlToImage.toPng(element)).subscribe(dataUrl => {
+      const link = document.createElement('a');
+      link.download = 'image.png';
+      link.href = dataUrl;
+      link.click();
     });
   }
 
@@ -137,14 +124,8 @@ export class TrophyCaseComponent {
   async shareImpl() {
     this.uponIsSaveLoading.emit(true);
 
-    // leverage html2canvas to convert from dom to canvas to blob
     const element: HTMLElement = document.querySelector('#capture');
-    const canvas: HTMLCanvasElement = await html2canvas(element, {
-      useCORS: true,
-      scrollX: 0,
-      scrollY: -window.scrollY,
-    });
-    const blob: Blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+    const blob: Blob = await htmlToImage.toBlob(element);
 
     // prep imgur POST request to upload blob
     const data = new FormData();

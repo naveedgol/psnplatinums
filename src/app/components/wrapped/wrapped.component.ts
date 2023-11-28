@@ -3,8 +3,8 @@ import { PsnService } from 'src/app/services/psn.service';
 import { Trophy } from 'src/app/types/Trophy';
 import { FilterService } from 'src/app/services/filter.service';
 import { DisplaySettings } from '../../types/DisplaySettings';
-import html2canvas from 'html2canvas';
-import { from } from 'rxjs';
+// import html2canvas from 'html2canvas';
+// import { from } from 'rxjs';
 
 @Component({
   selector: 'app-wrapped',
@@ -134,25 +134,25 @@ export class WrappedComponent {
 
   save(): void {
     this.isSaveLoading = true;
-    const element = document.querySelector('#capture');
-    from(
-      html2canvas(element as HTMLElement, {
-        useCORS: true,
-        scrollX: 0,
-        scrollY: -window.scrollY,
-      })
-    ).subscribe(canvas => {
-      (canvas as HTMLCanvasElement).toBlob(blob => {
-        // To download directly on browser default 'downloads' location
-        const link = document.createElement('a');
-        link.download = 'image.png';
-        link.href = URL.createObjectURL(blob);
-        link.click();
+    // const element = document.querySelector('#capture');
+    // from(
+    //   html2canvas(element as HTMLElement, {
+    //     useCORS: true,
+    //     scrollX: 0,
+    //     scrollY: -window.scrollY,
+    //   })
+    // ).subscribe(canvas => {
+    //   (canvas as HTMLCanvasElement).toBlob(blob => {
+    //     // To download directly on browser default 'downloads' location
+    //     const link = document.createElement('a');
+    //     link.download = 'image.png';
+    //     link.href = URL.createObjectURL(blob);
+    //     link.click();
 
-        // To save manually somewhere in file explorer
-        // window.saveAs(blob, 'image.png');
-      }, 'image/png');
-      this.isSaveLoading = false;
-    });
+    //     // To save manually somewhere in file explorer
+    //     // window.saveAs(blob, 'image.png');
+    //   }, 'image/png');
+    //   this.isSaveLoading = false;
+    // });
   }
 }
