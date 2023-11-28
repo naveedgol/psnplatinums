@@ -25,6 +25,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { WrappedComponent } from './components/wrapped/wrapped.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { WrappedComponent } from './components/wrapped/wrapped.component';
     TrophyCaseComponent,
     MosaicComponent,
     WrappedComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
