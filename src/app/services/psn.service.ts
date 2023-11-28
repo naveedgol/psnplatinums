@@ -94,9 +94,9 @@ export class PsnService {
       trophy.rarity = parseFloat((rarities[i] as HTMLElement).innerText);
       let date: Date = new Date();
       let d = (dates[i] as HTMLElement).innerText.trim().split(" ");
-      date.setMonth(this.getMonthNumberFromString(d[1]));
-      date.setFullYear(parseInt(d[2]));
-      date.setDate(parseInt(d[0].slice(0, -2)));
+      date.setUTCMonth(this.getMonthNumberFromString(d[1]));
+      date.setUTCFullYear(parseInt(d[2]));
+      date.setUTCDate(parseInt(d[0].slice(0, -2)));
       trophy.date = date;
       plats.push(trophy);
     }
