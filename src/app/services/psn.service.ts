@@ -21,13 +21,13 @@ export class PsnService {
     });
   }
 
-  getProfile(psn_id): Observable<any> {
+  getProfile(psn_id): Observable<string> {
     const options = {
       responseType: 'text' as const,
       params: { psn_id: psn_id },
     };
     if (this.debug) {
-      return this.http.get('./assets/data/profile.html', options);
+      return this.http.get('./assets/data/test/profile.html', options);
     }
     return this.http
       .get('https://hvo2t8h0ck.execute-api.us-east-1.amazonaws.com/default/fetchProfile', options)
@@ -113,14 +113,14 @@ export class PsnService {
     return plats;
   }
 
-  getPlatinums(psn_id: string, pageCount: number): Observable<any> {
+  getPlatinums(psn_id: string, pageCount: number): Observable<string> {
     const options = {
       headers: { accept: 'text/html' },
       params: { psn_id: psn_id, page: pageCount.toString() },
       responseType: 'text' as const,
     };
     if (this.debug) {
-      return this.http.get('./assets/data/platpage' + pageCount.toString() + '.html', options);
+      return this.http.get('./assets/data/test/platpage' + pageCount.toString() + '.html', options);
     }
     return this.http
       .get('https://hvo2t8h0ck.execute-api.us-east-1.amazonaws.com/fetchPlatinums', options)

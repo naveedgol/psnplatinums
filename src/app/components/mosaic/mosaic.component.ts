@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { PsnService } from '../../services/psn.service';
 import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
-import { User } from '../../types/User';
 import { DisplaySettings } from '../../types/DisplaySettings';
 import { Trophy } from '../../types/Trophy';
 import { FilterService } from 'src/app/services/filter.service';

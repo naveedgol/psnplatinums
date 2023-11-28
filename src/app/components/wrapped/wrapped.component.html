@@ -5,7 +5,7 @@
         Your 2020 started with the platinum in {{ firstPlatinum.game }}...
       </div>
       <div class="platIconContainer">
-        <img [src]="firstPlatinum.icon" [style.width.px]="90" />
+        <img [src]="firstPlatinum.icon" [style.width.px]="90" alt="{{ firstPlatinum.name }}" />
         <div>{{ firstPlatinum.name }}</div>
         <div class="rarity">{{ firstPlatinum.rarity }}%</div>
       </div>
@@ -15,7 +15,7 @@
 
     <div class="milestone-container">
       <div class="platIconContainer">
-        <img [src]="lastPlatinum.icon" [style.width.px]="90" />
+        <img [src]="lastPlatinum.icon" [style.width.px]="90" alt="{{ lastPlatinum.name }}" />
         <div>{{ lastPlatinum.name }}</div>
         <div class="rarity">{{ lastPlatinum.rarity }}%</div>
       </div>

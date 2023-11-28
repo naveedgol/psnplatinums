@@ -16,7 +16,7 @@ export class TrophyCaseComponent {
   @Input() cabinet: Trophy[] = [];
   @Input() user: User;
   @Input() displaySettings: DisplaySettings;
-  @Output() uponIsSaveLoading: EventEmitter<any> = new EventEmitter(false);
+  @Output() uponIsSaveLoading: EventEmitter<boolean> = new EventEmitter(false);
 
   constructor(private http: HttpClient) {}
 
