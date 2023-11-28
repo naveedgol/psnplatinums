@@ -2,7 +2,7 @@
     <mat-card class="search-card">
         <mat-card-content class="search-box">
             <mat-form-field>
-                <input matInput #searchInput placeholder="Enter a PSN ID (ex: jepot)" autocomplete="off">
+                <input matInput #searchInput placeholder="Enter a PSN ID" autocomplete="off">
             </mat-form-field>
             <mat-progress-bar *ngIf="loading" mode="{{loadingProgress.fetched ? 'determinate' : 'indeterminate'}}"
                 [value]="loadingProgress.fetched/loadingProgress.total * 100"></mat-progress-bar>
