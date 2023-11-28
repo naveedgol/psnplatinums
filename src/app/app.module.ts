@@ -28,13 +28,7 @@ import { WrappedComponent } from './components/wrapped/wrapped.component';
 import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TrophyCaseComponent,
-    MosaicComponent,
-    WrappedComponent,
-    HomeComponent,
-  ],
+  declarations: [AppComponent, TrophyCaseComponent, MosaicComponent, WrappedComponent, HomeComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -55,10 +49,12 @@ import { HomeComponent } from './components/home/home.component';
     MatExpansionModule,
     MatSelectModule,
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   providers: [PsnService],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

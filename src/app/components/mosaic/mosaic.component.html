@@ -2,17 +2,13 @@
   <mat-card class="options">
     <mat-card-content>
       <div class="search-box">
-
         <ng-container *ngIf="psnService.user">
           <h1 class="settingsTitle">Settings</h1>
           <mat-accordion>
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Theme
-                </mat-panel-title>
-                <mat-panel-description>
-                </mat-panel-description>
+                <mat-panel-title> Theme </mat-panel-title>
+                <mat-panel-description> </mat-panel-description>
               </mat-expansion-panel-header>
               <section class="section">
                 <h2>Color</h2>
@@ -24,16 +20,12 @@
                   <mat-radio-button class="radioButton" value="ORANGE">Orange</mat-radio-button>
                 </mat-radio-group>
               </section>
-
             </mat-expansion-panel>
 
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Visuals
-                </mat-panel-title>
-                <mat-panel-description>
-                </mat-panel-description>
+                <mat-panel-title> Visuals </mat-panel-title>
+                <mat-panel-description> </mat-panel-description>
               </mat-expansion-panel-header>
               <section class="section">
                 <h2>Icon Type</h2>
@@ -47,7 +39,7 @@
               <section class="section">
                 <h2>Icon Size</h2>
                 <mat-slider class="slider" thumbLabel min="10" max="200" step="1" value="56" discrete>
-                  <input [(ngModel)]="displaySettings.iconWidthPx" matSliderThumb>
+                  <input [(ngModel)]="displaySettings.iconWidthPx" matSliderThumb />
                 </mat-slider>
               </section>
 
@@ -55,7 +47,7 @@
               <section class="section">
                 <h2>Mosaic Width Adjuster</h2>
                 <mat-slider class="slider" thumbLabel min="-200" max="200" step="1" discrete>
-                  <input [(ngModel)]="displaySettings.width" matSliderThumb>
+                  <input [(ngModel)]="displaySettings.width" matSliderThumb />
                 </mat-slider>
               </section>
 
@@ -63,7 +55,7 @@
               <section class="section">
                 <h2>Column Spacing</h2>
                 <mat-slider class="slider" thumbLabel min="0" max="100" step="1" discrete>
-                  <input [(ngModel)]="displaySettings.columnSpacingPx" matSliderThumb>
+                  <input [(ngModel)]="displaySettings.columnSpacingPx" matSliderThumb />
                 </mat-slider>
               </section>
 
@@ -71,51 +63,55 @@
               <section class="section">
                 <h2>Row Spacing</h2>
                 <mat-slider class="slider" thumbLabel min="0" max="100" step="1" discrete>
-                  <input [(ngModel)]="displaySettings.rowSpacingPx" matSliderThumb>
+                  <input [(ngModel)]="displaySettings.rowSpacingPx" matSliderThumb />
                 </mat-slider>
               </section>
             </mat-expansion-panel>
 
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Visibility
-                </mat-panel-title>
-                <mat-panel-description>
-                </mat-panel-description>
+                <mat-panel-title> Visibility </mat-panel-title>
+                <mat-panel-description> </mat-panel-description>
               </mat-expansion-panel-header>
 
               <section class="section visibilityBox">
-                <mat-checkbox class="example-margin" [(ngModel)]="displaySettings.displayUserInfo">User Info
+                <mat-checkbox class="example-margin" [(ngModel)]="displaySettings.displayUserInfo"
+                  >User Info
                 </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="displaySettings.displayTrophyCounts"
+                <mat-checkbox
+                  class="example-margin"
+                  [(ngModel)]="displaySettings.displayTrophyCounts"
                   [disabled]="!displaySettings.displayUserInfo">
                   Trophy Counts
                 </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="displaySettings.displayGameTitle">Game Title
+                <mat-checkbox class="example-margin" [(ngModel)]="displaySettings.displayGameTitle"
+                  >Game Title
                 </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="displaySettings.displayTrophyTitle">Trophy Title
+                <mat-checkbox class="example-margin" [(ngModel)]="displaySettings.displayTrophyTitle"
+                  >Trophy Title
                 </mat-checkbox>
                 <mat-checkbox class="example-margin" [(ngModel)]="displaySettings.displayRarity">Rarity</mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="displaySettings.displayDateUnlocked">Date Unlocked
+                <mat-checkbox class="example-margin" [(ngModel)]="displaySettings.displayDateUnlocked"
+                  >Date Unlocked
                 </mat-checkbox>
-                <mat-checkbox class="example-margin" [(ngModel)]="displaySettings.displayWatermark">Watermark
+                <mat-checkbox class="example-margin" [(ngModel)]="displaySettings.displayWatermark"
+                  >Watermark
                 </mat-checkbox>
               </section>
             </mat-expansion-panel>
 
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Sorting
-                </mat-panel-title>
-                <mat-panel-description>
-                </mat-panel-description>
+                <mat-panel-title> Sorting </mat-panel-title>
+                <mat-panel-description> </mat-panel-description>
               </mat-expansion-panel-header>
 
               <section class="section">
                 <h2>Sort Order</h2>
-                <mat-radio-group class="radioGroup" aria-label="Sort Order" [(ngModel)]="sortOrder"
+                <mat-radio-group
+                  class="radioGroup"
+                  aria-label="Sort Order"
+                  [(ngModel)]="sortOrder"
                   (change)="applyFilters()">
                   <mat-radio-button class="radioButton" value="date">Date</mat-radio-button>
                   <mat-radio-button class="radioButton" value="rarity">Rarity</mat-radio-button>
@@ -126,7 +122,10 @@
               <mat-divider></mat-divider>
               <section class="section">
                 <h2>Sort Direction</h2>
-                <mat-radio-group class="radioGroup" aria-label="Sort Direction" [(ngModel)]="sortDirection"
+                <mat-radio-group
+                  class="radioGroup"
+                  aria-label="Sort Direction"
+                  [(ngModel)]="sortDirection"
                   (change)="applyFilters()">
                   <mat-radio-button class="radioButton" value="asc">Ascending</mat-radio-button>
                   <mat-radio-button class="radioButton" value="des">Descending</mat-radio-button>
@@ -136,11 +135,8 @@
 
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Filters
-                </mat-panel-title>
-                <mat-panel-description>
-                </mat-panel-description>
+                <mat-panel-title> Filters </mat-panel-title>
+                <mat-panel-description> </mat-panel-description>
               </mat-expansion-panel-header>
 
               <section class="section dateSection">
@@ -148,8 +144,12 @@
                 <mat-form-field appearance="fill">
                   <mat-label>Enter a date range</mat-label>
                   <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-                    <input matStartDate formControlName="start" placeholder="Start date" (dateChange)="applyFilters()">
-                    <input matEndDate formControlName="end" placeholder="End date" (dateChange)="applyFilters()">
+                    <input
+                      matStartDate
+                      formControlName="start"
+                      placeholder="Start date"
+                      (dateChange)="applyFilters()" />
+                    <input matEndDate formControlName="end" placeholder="End date" (dateChange)="applyFilters()" />
                   </mat-date-range-input>
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-date-range-picker #picker></mat-date-range-picker>
@@ -160,42 +160,48 @@
               <section class="section dateSection">
                 <h2 class="gameFilterTitle">Game Filter</h2>
                 <mat-form-field>
-                  <input matInput #gameFilterInput placeholder="Enter a game title" autocomplete="off"
-                    [(ngModel)]="gameFilterQuery" (keyup)="applyFilters()">
+                  <input
+                    matInput
+                    #gameFilterInput
+                    placeholder="Enter a game title"
+                    autocomplete="off"
+                    [(ngModel)]="gameFilterQuery"
+                    (keyup)="applyFilters()" />
                 </mat-form-field>
               </section>
-
             </mat-expansion-panel>
 
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Trophy Cabinet
-                </mat-panel-title>
-                <mat-panel-description>
-                </mat-panel-description>
+                <mat-panel-title> Trophy Cabinet </mat-panel-title>
+                <mat-panel-description> </mat-panel-description>
               </mat-expansion-panel-header>
               <mat-form-field appearance="fill">
                 <mat-label>Select your platinums</mat-label>
                 <mat-select [formControl]="cabinetForm" (selectionChange)="applyFilters()" multiple>
-                  <mat-option *ngFor="let plat of this.psnService.platinums" [value]="plat">{{plat.game}}</mat-option>
+                  <mat-option *ngFor="let plat of this.psnService.platinums" [value]="plat">{{ plat.game }}</mat-option>
                 </mat-select>
               </mat-form-field>
             </mat-expansion-panel>
-
           </mat-accordion>
           <mat-divider class="saveButtonDivider"></mat-divider>
-          <button class="saveButton" mat-raised-button color="primary" (click)="trophyCase.save()">Save as
-            PNG</button>
-          <button class="saveButton" mat-raised-button color="primary" (click)="trophyCase.share()">Share to
-            Reddit</button>
+          <button class="saveButton" mat-raised-button color="primary" (click)="trophyCase.save()">Save as PNG</button>
+          <button class="saveButton" mat-raised-button color="primary" (click)="trophyCase.share()">
+            Share to Reddit
+          </button>
           <mat-spinner *ngIf="isSaveLoading" class="save-spinner" [diameter]="30"></mat-spinner>
         </ng-container>
       </div>
     </mat-card-content>
   </mat-card>
 
-  <app-trophy-case #trophyCase *ngIf="psnService.user" [platinums]="currentPlats" [cabinet]="cabinetForm.value"
-    [user]="psnService.user" [displaySettings]="displaySettings" (uponIsSaveLoading)="uponIsSaveLoading($event)">
+  <app-trophy-case
+    #trophyCase
+    *ngIf="psnService.user"
+    [platinums]="currentPlats"
+    [cabinet]="cabinetForm.value"
+    [user]="psnService.user"
+    [displaySettings]="displaySettings"
+    (uponIsSaveLoading)="uponIsSaveLoading($event)">
   </app-trophy-case>
 </div>
